@@ -1,4 +1,4 @@
-library extrawest_ui_kit_mobike;
+library extrawest_ui_kit;
 
 /// A Calculator.
 class Calculator {

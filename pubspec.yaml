@@ -1,5 +1,5 @@
-name: extrawest_ui_kit_mobike
-description: Extrawest UI kit mobile
+name: extrawest_ui_kit
+description: Extrawest UI kit
 version: 0.0.1
 homepage:
 
@@ -10,11 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  widgetbook: ^3.3.0
+  widgetbook_annotation: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  widgetbook_generator: ^3.2.0
+  build_runner: ^2.4.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

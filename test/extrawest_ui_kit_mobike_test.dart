@@ -1,6 +1,5 @@
+import 'package:extrawest_ui_kit/extrawest_ui_kit.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:extrawest_ui_kit_mobike/extrawest_ui_kit_mobike.dart';
 
 void main() {
   test('adds one to input values', () {
