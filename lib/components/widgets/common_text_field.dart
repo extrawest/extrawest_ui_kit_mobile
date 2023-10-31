@@ -30,9 +30,11 @@ class CommonTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
-        border: theme.inputDecorationTheme.border,
-        focusedBorder: theme.inputDecorationTheme.focusedBorder,
-        errorBorder: theme.inputDecorationTheme.errorBorder,
+        focusedBorder: (theme.inputDecorationTheme.focusedBorder as OutlineInputBorder).copyWith(
+          borderSide: BorderSide(color: theme.colorScheme.primary, width: 2),
+        ),
+        errorBorder: (theme.inputDecorationTheme.errorBorder as OutlineInputBorder)
+            .copyWith(borderSide: BorderSide(color: theme.colorScheme.error)),
         labelText: hintText,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
