@@ -33,8 +33,9 @@ class CommonTextField extends StatelessWidget {
         focusedBorder: (theme.inputDecorationTheme.focusedBorder as OutlineInputBorder).copyWith(
           borderSide: BorderSide(color: theme.colorScheme.primary, width: 2),
         ),
-        errorBorder: (theme.inputDecorationTheme.errorBorder as OutlineInputBorder)
-            .copyWith(borderSide: BorderSide(color: theme.colorScheme.error)),
+        errorBorder: (theme.inputDecorationTheme.errorBorder as OutlineInputBorder).copyWith(
+          borderSide: BorderSide(color: theme.colorScheme.error),
+        ),
         labelText: hintText,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
