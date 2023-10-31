@@ -1,56 +1,49 @@
 import 'package:flutter/material.dart';
 
-class CommonTextField extends StatefulWidget {
+class CommonTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextStyle? textStyle;
   final String? Function(String?)? validator;
   final String? hintText;
+  final String? errorText;
   final Widget? prefixIcon;
   final bool obscure;
   final Widget? suffixIcon;
+  final TextEditingController? controller;
 
   const CommonTextField({
+    this.controller,
     this.keyboardType,
     this.textStyle,
     this.validator,
     this.hintText,
     this.prefixIcon,
+    this.errorText,
     this.obscure = false,
     this.suffixIcon,
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CommonTextField> createState() => _CommonTextFieldState();
-}
-
-class _CommonTextFieldState extends State<CommonTextField> {
-  final TextEditingController _textController = TextEditingController();
-
-  @override
-  void dispose() {
-    _textController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return TextFormField(
-      controller: _textController,
+      controller: controller,
       decoration: InputDecoration(
         border: theme.inputDecorationTheme.border,
         focusedBorder: theme.inputDecorationTheme.focusedBorder,
         errorBorder: theme.inputDecorationTheme.errorBorder,
-        hintText: widget.hintText,
-        prefixIcon: widget.prefixIcon,
-        suffixIcon: widget.suffixIcon,
+        labelText: hintText,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        errorText: errorText,
       ),
       cursorColor: theme.colorScheme.primary,
-      style: widget.textStyle,
-      keyboardType: widget.keyboardType,
-      validator: widget.validator,
-      obscureText: widget.obscure,
+      style: textStyle,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      keyboardType: keyboardType,
+      validator: validator,
+      obscureText: obscure,
     );
   }
 }
