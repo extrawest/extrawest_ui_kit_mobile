@@ -2,7 +2,14 @@ import 'package:extrawest_ui_kit/components/widgets/common_text_field.dart';
 import 'package:flutter/material.dart';
 
 class PasswordInput extends StatefulWidget {
-  const PasswordInput({Key? key}) : super(key: key);
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
+
+  const PasswordInput({
+    this.controller,
+    this.validator,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<PasswordInput> createState() => _PasswordInputState();
@@ -14,6 +21,7 @@ class _PasswordInputState extends State<PasswordInput> {
   @override
   Widget build(BuildContext context) {
     return CommonTextField(
+      controller: widget.controller,
       prefixIcon: const Icon(Icons.lock_outline),
       keyboardType: TextInputType.emailAddress,
       hintText: 'Password',
@@ -24,9 +32,13 @@ class _PasswordInputState extends State<PasswordInput> {
         child: InkWell(
           borderRadius: BorderRadius.circular(20.0),
           onTap: () => setState(() => _isObscured = !_isObscured),
-          child: const Icon(Icons.visibility),
+          child: Icon(
+            Icons.visibility_outlined,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
         ),
       ),
+      validator: widget.validator,
     );
   }
 }
