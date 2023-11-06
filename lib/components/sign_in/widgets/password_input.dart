@@ -1,13 +1,17 @@
 import 'package:extrawest_ui_kit/components/widgets/common_text_field.dart';
+import 'package:extrawest_ui_kit/components/widgets/text_widgets/label_large.dart';
 import 'package:flutter/material.dart';
 
 class PasswordInput extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
 
+  final bool isResetPasswordEnabled;
+
   const PasswordInput({
     this.controller,
     this.validator,
+    this.isResetPasswordEnabled = true,
     Key? key,
   }) : super(key: key);
 
@@ -20,25 +24,50 @@ class _PasswordInputState extends State<PasswordInput> {
 
   @override
   Widget build(BuildContext context) {
-    return CommonTextField(
-      controller: widget.controller,
-      prefixIcon: const Icon(Icons.lock_outline),
-      keyboardType: TextInputType.emailAddress,
-      hintText: 'Password',
-      obscure: _isObscured,
-      suffixIcon: Material(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(20.0),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(20.0),
-          onTap: () => setState(() => _isObscured = !_isObscured),
-          child: Icon(
-            Icons.visibility_outlined,
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
+    return Column(
+      children: [
+        CommonTextField(
+          controller: widget.controller,
+          prefixIcon: const Icon(Icons.lock_outline),
+          keyboardType: TextInputType.emailAddress,
+          hintText: 'Password',
+          obscure: _isObscured,
+          suffixIcon: Material(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(20.0),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(20.0),
+              onTap: () => setState(() => _isObscured = !_isObscured),
+              child: Icon(
+                Icons.visibility_outlined,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
           ),
+          validator: widget.validator,
         ),
-      ),
-      validator: widget.validator,
+        if (widget.isResetPasswordEnabled) ...[
+          const SizedBox(height: 16),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Material(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(20.0),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(20.0),
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: LabelLarge(
+                    text: 'Password recovery',
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
+            ),
+          )
+        ]
+      ],
     );
   }
 }
