@@ -1,7 +1,8 @@
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/label_large.dart';
+import 'package:extrawest_ui_kit/consts.dart';
 import 'package:flutter/material.dart';
 
-final borderRadius = BorderRadius.circular(100.0);
+final borderRadius = BorderRadius.circular(buttonDefaultBorderRadius);
 
 class CommonButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -30,7 +31,7 @@ class CommonButton extends StatelessWidget {
           ),
           child: Center(
             child: LabelLarge(
-              text: 'Sign In',
+              text: text,
               color: theme.colorScheme.onPrimary,
             ),
           ),
