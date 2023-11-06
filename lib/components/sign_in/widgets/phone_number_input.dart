@@ -6,7 +6,6 @@ class PhoneNumberInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return InternationalPhoneNumberInput(
       onInputChanged: (value) {},
       //inputBorder: const OutlineInputBorder(),
