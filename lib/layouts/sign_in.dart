@@ -5,7 +5,7 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/phone_number_input.d
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/apple_button.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/facebook_button.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/google_button.dart';
-import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/social_auth_button.dart';
+import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/social_auth_provider.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/x_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/logo.dart';
@@ -49,7 +49,7 @@ class SignIn extends StatelessWidget {
   final bool isSignUpEnabled;
   final bool isGuestEnabled;
 
-  final List<SocialAuthProviders> socialAuthProviders;
+  final List<SocialAuthProvider> socialAuthProviders;
 
   const SignIn({
     required this.authType,
@@ -130,53 +130,33 @@ class SignIn extends StatelessWidget {
   }
 
   Widget _buildAuthProvider(BuildContext context) {
+    final showTitle = socialAuthProviders.length < 3;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ...socialAuthProviders.map(
-          (social) {
-            final isLabelVisible = socialAuthProviders.length < 3;
-            Widget provider;
-            switch (social) {
-              case SocialAuthProviders.google:
-                provider = GoogleButton(
-                  onTap: () {},
-                  isLabelVisible: isLabelVisible,
-                );
-              case SocialAuthProviders.appleId:
-                provider = AppleButton(
-                  onTap: () {},
-                  isLabelVisible: isLabelVisible,
-                );
-              case SocialAuthProviders.facebook:
-                provider = FacebookButton(
-                  onTap: () {},
-                  isLabelVisible: isLabelVisible,
-                );
-              case SocialAuthProviders.x:
-                provider = XButton(
-                  onTap: () {},
-                  isLabelVisible: isLabelVisible,
-                );
-            }
-            return isLabelVisible
-                ? Expanded(
-                    child: Row(
-                      children: [
-                        Expanded(child: provider),
-                        const SizedBox(width: 16),
-                      ],
-                    ),
-                  )
-                : Row(
-                    children: [
-                      provider,
-                      const SizedBox(width: 16),
-                    ],
-                  );
-          },
-        ).toList(),
+        ...socialAuthProviders.map((social) => buildSocialButton(social, showTitle)).toList(),
       ],
     );
+  }
+
+  Widget buildSocialButton(SocialAuthProvider social, bool showTitle) {
+    return switch (social) {
+      SocialAuthProvider.google => GoogleButton(
+          onTap: () {},
+          showTitle: showTitle,
+        ),
+      SocialAuthProvider.appleId => AppleButton(
+          onTap: () {},
+          showTitle: showTitle,
+        ),
+      SocialAuthProvider.facebook => FacebookButton(
+          onTap: () {},
+          showTitle: showTitle,
+        ),
+      SocialAuthProvider.x => XButton(
+          onTap: () {},
+          showTitle: showTitle,
+        ),
+    };
   }
 }
