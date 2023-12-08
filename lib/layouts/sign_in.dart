@@ -8,6 +8,7 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/google_b
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/social_auth_button.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/x_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
+import 'package:extrawest_ui_kit/components/widgets/logo.dart';
 import 'package:extrawest_ui_kit/components/widgets/secondary_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/body_medium.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/label_large.dart';
@@ -72,7 +73,7 @@ class SignIn extends StatelessWidget {
     return SignInLayout(
       child: Column(
         children: [
-          _Logo(title: title),
+          Logo(title: title),
           const Spacer(),
           const TitleLarge(text: 'Sign In'),
           const SizedBox(height: 40),
@@ -175,26 +176,6 @@ class SignIn extends StatelessWidget {
                   );
           },
         ).toList(),
-      ],
-    );
-  }
-}
-
-class _Logo extends StatelessWidget {
-  final String? title;
-
-  const _Logo({this.title, Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(color: Colors.yellow),
-        Text(
-          title ?? '',
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
       ],
     );
   }
