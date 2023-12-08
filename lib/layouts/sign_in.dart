@@ -1,3 +1,4 @@
+import 'package:extrawest_ui_kit/components/sign_in/auth_type.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/email_input.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/password_input.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/phone_number_input.dart';
@@ -6,24 +7,12 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/facebook
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/google_button.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/social_auth_button.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/x_button.dart';
-import 'package:extrawest_ui_kit/components/widgets/common_button.dart';
+import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/secondary_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/body_medium.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/label_large.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/title_large.dart';
 import 'package:flutter/material.dart';
-
-enum AuthType {
-  emailLink,
-  emailPassword,
-  phoneNumber;
-
-  bool get isEmailLink => this == emailLink;
-
-  bool get isEmailPassword => this == emailPassword;
-
-  bool get isPhoneNumber => this == phoneNumber;
-}
 
 class SignInLayout extends StatelessWidget {
   final Widget child;
@@ -102,7 +91,7 @@ class SignIn extends StatelessWidget {
             ),
             const SizedBox(height: 32),
           ],
-          CommonButton(onTap: () {}, text: 'Sign In'),
+          EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
           if (isGuestEnabled) ...[
             const SizedBox(height: 16),
             SecondaryButton(onTap: () {}, text: 'Sign In as Guest'),
@@ -169,14 +158,21 @@ class SignIn extends StatelessWidget {
                   isLabelVisible: isLabelVisible,
                 );
             }
-            return Expanded(
-              child: Row(
-                children: [
-                  isLabelVisible ? Expanded(child: provider) : provider,
-                  const SizedBox(width: 16),
-                ],
-              ),
-            );
+            return isLabelVisible
+                ? Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(child: provider),
+                        const SizedBox(width: 16),
+                      ],
+                    ),
+                  )
+                : Row(
+                    children: [
+                      provider,
+                      const SizedBox(width: 16),
+                    ],
+                  );
           },
         ).toList(),
       ],
