@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class GoogleButton extends SocialAuthButton {
   const GoogleButton({
     required super.onTap,
-    super.isLabelVisible = true,
+    super.showTitle = true,
     Key? key,
   }) : super(key: key);
 
@@ -14,8 +14,8 @@ class GoogleButton extends SocialAuthButton {
     return SocialButtonBody(
       onTap: () {},
       icon: const FlutterLogo(),
-      label: 'Google',
-      isLabelVisible: isLabelVisible,
+      title: 'Google',
+      showTitle: showTitle,
     );
   }
 }

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class FacebookButton extends SocialAuthButton {
   const FacebookButton({
     required super.onTap,
-    super.isLabelVisible = true,
+    super.showTitle = true,
     Key? key,
   }) : super(key: key);
 
@@ -14,8 +14,8 @@ class FacebookButton extends SocialAuthButton {
     return SocialButtonBody(
       onTap: () {},
       icon: const FlutterLogo(),
-      label: 'Facebook',
-      isLabelVisible: isLabelVisible,
+      title: 'Facebook',
+      showTitle: showTitle,
     );
   }
 }

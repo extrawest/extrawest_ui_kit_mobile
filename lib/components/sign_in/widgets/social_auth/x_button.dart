@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class XButton extends SocialAuthButton {
   const XButton({
     required super.onTap,
-    super.isLabelVisible = true,
+    super.showTitle = true,
     Key? key,
   }) : super(key: key);
 
@@ -14,8 +14,8 @@ class XButton extends SocialAuthButton {
     return SocialButtonBody(
       onTap: () {},
       icon: const FlutterLogo(),
-      label: 'X',
-      isLabelVisible: isLabelVisible,
+      title: 'X',
+      showTitle: showTitle,
     );
   }
 }

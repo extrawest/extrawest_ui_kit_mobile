@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class AppleButton extends SocialAuthButton {
   const AppleButton({
     required super.onTap,
-    super.isLabelVisible = true,
+    super.showTitle = true,
     Key? key,
   }) : super(key: key);
 
@@ -14,8 +14,8 @@ class AppleButton extends SocialAuthButton {
     return SocialButtonBody(
       onTap: () {},
       icon: const FlutterLogo(),
-      label: 'Apple',
-      isLabelVisible: isLabelVisible,
+      title: 'Apple',
+      showTitle: showTitle,
     );
   }
 }
