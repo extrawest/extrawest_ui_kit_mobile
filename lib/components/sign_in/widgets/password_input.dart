@@ -1,5 +1,5 @@
+import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/ew_text_field.dart';
-import 'package:extrawest_ui_kit/components/widgets/text_widgets/label_large.dart';
 import 'package:flutter/material.dart';
 
 class PasswordInput extends StatefulWidget {
@@ -47,20 +47,9 @@ class _PasswordInputState extends State<PasswordInput> {
           const SizedBox(height: 16),
           Align(
             alignment: Alignment.centerRight,
-            child: Material(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(20.0),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(20.0),
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: LabelLarge(
-                    text: 'Password recovery',
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ),
+            child: EWBaseButton.text(
+              onPressed: () {},
+              title: 'Password recovery',
             ),
           )
         ]

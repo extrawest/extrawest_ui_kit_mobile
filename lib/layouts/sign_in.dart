@@ -9,9 +9,7 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/social_a
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/x_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/logo.dart';
-import 'package:extrawest_ui_kit/components/widgets/text_widgets/body_medium.dart';
-import 'package:extrawest_ui_kit/components/widgets/text_widgets/label_large.dart';
-import 'package:extrawest_ui_kit/components/widgets/text_widgets/title_large.dart';
+import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
 import 'package:flutter/material.dart';
 
 class SignInLayout extends StatelessWidget {
@@ -67,13 +65,15 @@ class SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return SignInLayout(
       child: Column(
         children: [
           Logo(title: title),
           const Spacer(),
-          const TitleLarge(text: 'Sign In'),
+          Text(
+            'Sign In',
+            style: context.textStyle(TextScale.titleLarge),
+          ),
           const SizedBox(height: 40),
           if (authType.isEmailPassword || authType.isEmailLink)
             EmailInput(
@@ -104,21 +104,13 @@ class SignIn extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const BodyMedium(text: "Don't have an account?"),
-                Material(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(20.0),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(20.0),
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: LabelLarge(
-                        text: 'Create an account',
-                        color: theme.colorScheme.primary,
-                      ),
-                    ),
-                  ),
+                Text(
+                  "Don't have an account?",
+                  style: context.textStyle(TextScale.bodyMedium),
+                ),
+                EWBaseButton.text(
+                  onPressed: () {},
+                  title: 'Create an account',
                 ),
               ],
             ),
