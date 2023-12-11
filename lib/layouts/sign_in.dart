@@ -90,11 +90,18 @@ class SignIn extends StatelessWidget {
             ),
             const SizedBox(height: 32),
           ],
-          EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
-          if (isGuestEnabled) ...[
-            const SizedBox(height: 16),
-            EWBaseButton.outlined(onPressed: () {}, title: 'Sign In as Guest'),
-          ],
+          IntrinsicWidth(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
+                if (isGuestEnabled) ...[
+                  const SizedBox(height: 16),
+                  EWBaseButton.outlined(onPressed: () {}, title: 'Sign In as Guest'),
+                ],
+              ],
+            ),
+          ),
           const SizedBox(height: 40),
           if (socialAuthProviders.isNotEmpty) ...[
             _buildAuthProvider(context),
