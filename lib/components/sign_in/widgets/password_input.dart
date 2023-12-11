@@ -1,4 +1,4 @@
-import 'package:extrawest_ui_kit/components/widgets/common_text_field.dart';
+import 'package:extrawest_ui_kit/components/widgets/ew_text_field.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/label_large.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +26,7 @@ class _PasswordInputState extends State<PasswordInput> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CommonTextField(
+        EWTextField(
           controller: widget.controller,
           prefixIcon: const Icon(Icons.lock_outline),
           keyboardType: TextInputType.emailAddress,

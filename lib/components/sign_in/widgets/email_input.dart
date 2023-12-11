@@ -1,4 +1,4 @@
-import 'package:extrawest_ui_kit/components/widgets/common_text_field.dart';
+import 'package:extrawest_ui_kit/components/widgets/ew_text_field.dart';
 import 'package:flutter/material.dart';
 
 class EmailInput extends StatelessWidget {
@@ -13,7 +13,7 @@ class EmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CommonTextField(
+    return EWTextField(
       controller: controller,
       prefixIcon: const Icon(Icons.email_outlined),
       keyboardType: TextInputType.emailAddress,

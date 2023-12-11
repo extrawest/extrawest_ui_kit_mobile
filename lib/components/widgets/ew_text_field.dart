@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CommonTextField extends StatelessWidget {
+class EWTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextStyle? textStyle;
   final String? Function(String?)? validator;
@@ -11,7 +11,7 @@ class CommonTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final TextEditingController? controller;
 
-  const CommonTextField({
+  const EWTextField({
     this.controller,
     this.keyboardType,
     this.textStyle,
