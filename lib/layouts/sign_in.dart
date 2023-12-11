@@ -9,7 +9,6 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/social_a
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/x_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/logo.dart';
-import 'package:extrawest_ui_kit/components/widgets/secondary_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/body_medium.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/label_large.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/title_large.dart';
@@ -23,7 +22,6 @@ class SignInLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -95,7 +93,7 @@ class SignIn extends StatelessWidget {
           EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
           if (isGuestEnabled) ...[
             const SizedBox(height: 16),
-            SecondaryButton(onTap: () {}, text: 'Sign In as Guest'),
+            EWBaseButton.outlined(onPressed: () {}, title: 'Sign In as Guest'),
           ],
           const SizedBox(height: 40),
           if (socialAuthProviders.isNotEmpty) ...[
