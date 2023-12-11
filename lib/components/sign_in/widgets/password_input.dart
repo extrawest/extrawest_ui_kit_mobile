@@ -38,10 +38,7 @@ class _PasswordInputState extends State<PasswordInput> {
             child: InkWell(
               borderRadius: BorderRadius.circular(20.0),
               onTap: () => setState(() => _isObscured = !_isObscured),
-              child: Icon(
-                Icons.visibility_outlined,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
+              child: const Icon(Icons.visibility_outlined),
             ),
           ),
           validator: widget.validator,

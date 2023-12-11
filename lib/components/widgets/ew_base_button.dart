@@ -1,7 +1,4 @@
-import 'package:extrawest_ui_kit/consts.dart';
 import 'package:flutter/material.dart';
-
-final borderRadius = BorderRadius.circular(buttonDefaultBorderRadius);
 
 sealed class ButtonType {
   const ButtonType();

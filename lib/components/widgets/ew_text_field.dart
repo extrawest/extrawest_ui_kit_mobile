@@ -30,12 +30,8 @@ class EWTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
-        focusedBorder: (theme.inputDecorationTheme.focusedBorder as OutlineInputBorder).copyWith(
-          borderSide: BorderSide(color: theme.colorScheme.primary, width: 2),
-        ),
-        errorBorder: (theme.inputDecorationTheme.errorBorder as OutlineInputBorder).copyWith(
-          borderSide: BorderSide(color: theme.colorScheme.error),
-        ),
+        focusedBorder: theme.inputDecorationTheme.focusedBorder,
+        errorBorder: theme.inputDecorationTheme.errorBorder,
         labelText: hintText,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
