@@ -61,8 +61,6 @@ class EWBaseButton extends StatelessWidget {
         buttonType: const Filled(),
         showTitle: showTitle,
         icon: icon,
-        // isLoading: isLoading,
-        // style: style,
       );
 
   factory EWBaseButton.elevated({
@@ -81,9 +79,6 @@ class EWBaseButton extends StatelessWidget {
         buttonType: const Elevated(),
         showTitle: showTitle,
         icon: icon,
-
-        // isLoading: isLoading,
-        // style: style,
       );
 
   factory EWBaseButton.text({
@@ -102,9 +97,6 @@ class EWBaseButton extends StatelessWidget {
         buttonType: const TextType(),
         showTitle: showTitle,
         icon: icon,
-
-        // isLoading: isLoading,
-        // style: style,
       );
 
   factory EWBaseButton.filledTonal({
@@ -123,9 +115,6 @@ class EWBaseButton extends StatelessWidget {
         buttonType: const FilledTonal(),
         showTitle: showTitle,
         icon: icon,
-
-        // isLoading: isLoading,
-        // style: style,
       );
 
   factory EWBaseButton.outlined({
@@ -144,9 +133,6 @@ class EWBaseButton extends StatelessWidget {
         buttonType: const Outlined(),
         showTitle: showTitle,
         icon: icon,
-
-        // isLoading: isLoading,
-        // style: style,
       );
 
   @override
@@ -154,7 +140,10 @@ class EWBaseButton extends StatelessWidget {
     final child = title != null ? Text(title!) : const SizedBox();
     final useIcon = icon != null;
     if (!showTitle && useIcon) {
-      return IconButton(onPressed: onPressed, icon: icon!);
+      return IconButton.outlined(
+        onPressed: onPressed,
+        icon: icon!,
+      );
     }
     return switch (buttonType) {
       Filled() => useIcon
