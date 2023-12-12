@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:extrawest_ui_kit/components/sign_in/auth_type.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/email_input.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/password_input.dart';
@@ -127,19 +128,18 @@ class SignIn extends StatelessWidget {
 
   Widget _buildAuthProvider(BuildContext context) {
     final showTitle = socialAuthProviders.length < 3;
-    final List<Widget> buttons = [];
+    final List<Widget> socialButtons = [];
 
-    for (int i = 0; i <= socialAuthProviders.length - 1; i++) {
-      buttons.add(buildSocialButton(socialAuthProviders[i], showTitle));
-
-      if (i < socialAuthProviders.length - 1) {
-        buttons.add(const SizedBox(width: 16));
+    socialAuthProviders.mapIndexed((index, social) {
+      socialButtons.add(buildSocialButton(social, showTitle));
+      if (index < socialAuthProviders.length - 1) {
+        socialButtons.add(const SizedBox(width: 16));
       }
-    }
+    });
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: buttons,
+      children: socialButtons,
     );
   }
 
