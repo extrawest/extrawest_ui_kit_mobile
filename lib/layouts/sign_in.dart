@@ -10,39 +10,8 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/x_button
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/logo.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
+import 'package:extrawest_ui_kit/layouts/sign_in_layout.dart';
 import 'package:flutter/material.dart';
-
-class SignInLayout extends StatelessWidget {
-  final EdgeInsets? contentPadding;
-  final Widget child;
-  final bool useSafeArea;
-
-  const SignInLayout({
-    required this.child,
-    this.contentPadding,
-    this.useSafeArea = true,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        top: useSafeArea,
-        bottom: useSafeArea,
-        left: useSafeArea,
-        right: useSafeArea,
-        child: Padding(
-          padding: contentPadding ??
-              (MediaQuery.of(context).orientation == Orientation.portrait
-                  ? const EdgeInsets.symmetric(horizontal: 16.0)
-                  : const EdgeInsets.symmetric(horizontal: 102.0)),
-          child: child,
-        ),
-      ),
-    );
-  }
-}
 
 class SignIn extends StatelessWidget {
   final AuthType authType;
