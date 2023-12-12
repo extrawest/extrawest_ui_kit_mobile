@@ -30,6 +30,8 @@ class SignInLayout extends StatelessWidget {
       body: SafeArea(
         top: useSafeArea,
         bottom: useSafeArea,
+        left: useSafeArea,
+        right: useSafeArea,
         child: Padding(
           padding: contentPadding ??
               (MediaQuery.of(context).orientation == Orientation.portrait
