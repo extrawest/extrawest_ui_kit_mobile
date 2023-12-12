@@ -15,7 +15,7 @@ class Logo extends StatelessWidget {
         ColoredBox(color: theme.colorScheme.onSurfaceVariant),
         Text(
           title ?? '',
-          style: context.textStyle(TextScale.headlineMedium),
+          style: context.textStyle(TextScale.headlineLarge),
         ),
       ],
     );

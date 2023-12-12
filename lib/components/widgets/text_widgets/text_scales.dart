@@ -7,6 +7,8 @@ enum TextScale {
 
   displaySmall,
 
+  headlineLarge,
+
   headlineMedium,
 
   headlineSmall,
@@ -66,6 +68,17 @@ extension ContextExtension on BuildContext {
             );
       case TextScale.displaySmall:
         return Theme.of(this).textTheme.displaySmall!.copyWith(
+              color: color,
+              fontWeight: fontWeight,
+              fontSize: size?.toDouble(),
+              fontFamily: fontFamily,
+              letterSpacing: letterSpacing,
+              decoration: decoration,
+              height: height,
+              fontStyle: fontStyle,
+            );
+      case TextScale.headlineLarge:
+        return Theme.of(this).textTheme.headlineLarge!.copyWith(
               color: color,
               fontWeight: fontWeight,
               fontSize: size?.toDouble(),
