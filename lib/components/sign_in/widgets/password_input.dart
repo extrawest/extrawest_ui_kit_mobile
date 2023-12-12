@@ -10,10 +10,13 @@ class PasswordInput extends StatefulWidget {
 
   final bool isResetPasswordEnabled;
 
+  final VoidCallback? onPasswordRecoveryTap;
+
   const PasswordInput({
     this.controller,
     this.validator,
     this.isResetPasswordEnabled = true,
+    this.onPasswordRecoveryTap,
     this.hintText,
     Key? key,
   }) : super(key: key);
@@ -51,7 +54,7 @@ class _PasswordInputState extends State<PasswordInput> {
           Align(
             alignment: Alignment.centerRight,
             child: EWBaseButton.text(
-              onPressed: () {},
+              onPressed: widget.onPasswordRecoveryTap,
               title: 'Password recovery',
             ),
           )
