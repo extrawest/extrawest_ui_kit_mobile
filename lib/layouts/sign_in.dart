@@ -13,16 +13,28 @@ import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dar
 import 'package:flutter/material.dart';
 
 class SignInLayout extends StatelessWidget {
+  final EdgeInsets? contentPadding;
   final Widget child;
+  final bool useSafeArea;
 
-  const SignInLayout({required this.child, Key? key}) : super(key: key);
+  const SignInLayout({
+    required this.child,
+    this.contentPadding,
+    this.useSafeArea = true,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: useSafeArea,
+        bottom: useSafeArea,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: contentPadding ??
+              (MediaQuery.of(context).orientation == Orientation.portrait
+                  ? const EdgeInsets.symmetric(horizontal: 16.0)
+                  : const EdgeInsets.symmetric(horizontal: 102.0)),
           child: child,
         ),
       ),
@@ -47,6 +59,9 @@ class SignIn extends StatelessWidget {
 
   final List<SocialAuthProvider> socialAuthProviders;
 
+  final EdgeInsets? contentPadding;
+  final bool useSafeArea;
+
   const SignIn({
     required this.authType,
     this.emailController,
@@ -59,69 +74,82 @@ class SignIn extends StatelessWidget {
     this.passwordValidator,
     this.phoneNumberValidator,
     this.socialAuthProviders = const [],
+    this.contentPadding,
     this.title,
+    this.useSafeArea = true,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SignInLayout(
-      child: Column(
-        children: [
-          Logo(title: title),
-          const Spacer(),
-          Text(
-            'Sign In',
-            style: context.textStyle(TextScale.titleLarge),
-          ),
-          const SizedBox(height: 40),
-          if (authType.isEmailPassword || authType.isEmailLink)
-            EmailInput(
-              controller: emailController,
-              validator: emailValidator,
-            ),
-          if (authType.isPhoneNumber) const PhoneNumberInput(),
-          const SizedBox(height: 16),
-          if (authType.isEmailPassword || authType.isPhoneNumber) ...[
-            PasswordInput(
-              controller: passwordController,
-              validator: passwordValidator,
-              isResetPasswordEnabled: isResetPasswordEnabled,
-            ),
-            const SizedBox(height: 32),
-          ],
-          IntrinsicWidth(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
-                if (isGuestEnabled) ...[
+      contentPadding: contentPadding,
+      useSafeArea: useSafeArea,
+      child: LayoutBuilder(
+        builder: (context, constraints) => SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
+            child: IntrinsicHeight(
+              child: Column(
+                children: [
+                  Logo(title: title),
+                  const Spacer(),
+                  Text(
+                    'Sign In',
+                    style: context.textStyle(TextScale.titleLarge),
+                  ),
+                  const SizedBox(height: 40),
+                  if (authType.isEmailPassword || authType.isEmailLink)
+                    EmailInput(
+                      controller: emailController,
+                      validator: emailValidator,
+                    ),
+                  if (authType.isPhoneNumber) const PhoneNumberInput(),
                   const SizedBox(height: 16),
-                  EWBaseButton.outlined(onPressed: () {}, title: 'Sign In as Guest'),
+                  if (authType.isEmailPassword || authType.isPhoneNumber) ...[
+                    PasswordInput(
+                      controller: passwordController,
+                      validator: passwordValidator,
+                      isResetPasswordEnabled: isResetPasswordEnabled,
+                    ),
+                    const SizedBox(height: 32),
+                  ],
+                  IntrinsicWidth(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
+                        if (isGuestEnabled) ...[
+                          const SizedBox(height: 16),
+                          EWBaseButton.outlined(onPressed: () {}, title: 'Sign In as Guest'),
+                        ],
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                  if (socialAuthProviders.isNotEmpty) ...[
+                    _buildAuthProvider(context),
+                    const SizedBox(height: 24),
+                  ],
+                  if (isSignUpEnabled)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account?",
+                          style: context.textStyle(TextScale.bodyMedium),
+                        ),
+                        EWBaseButton.text(
+                          onPressed: () {},
+                          title: 'Create an account',
+                        ),
+                      ],
+                    ),
                 ],
-              ],
+              ),
             ),
           ),
-          const SizedBox(height: 40),
-          if (socialAuthProviders.isNotEmpty) ...[
-            _buildAuthProvider(context),
-            const SizedBox(height: 24),
-          ],
-          if (isSignUpEnabled)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Don't have an account?",
-                  style: context.textStyle(TextScale.bodyMedium),
-                ),
-                EWBaseButton.text(
-                  onPressed: () {},
-                  title: 'Create an account',
-                ),
-              ],
-            ),
-        ],
+        ),
       ),
     );
   }
