@@ -38,10 +38,10 @@ class EWBaseButton extends StatelessWidget {
 
   const EWBaseButton({
     this.buttonType = const Filled(),
+    this.showTitle = true,
     this.onPressed,
     this.title,
     this.icon,
-    this.showTitle = true,
     Key? key,
   }) : super(key: key);
 

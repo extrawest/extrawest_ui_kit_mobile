@@ -13,6 +13,7 @@ class EWTextField extends StatelessWidget {
   final Color? cursorColor;
 
   const EWTextField({
+    this.obscure = false,
     this.controller,
     this.keyboardType,
     this.textStyle,
@@ -20,7 +21,6 @@ class EWTextField extends StatelessWidget {
     this.hintText,
     this.prefixIcon,
     this.errorText,
-    this.obscure = false,
     this.cursorColor,
     this.suffixIcon,
     Key? key,

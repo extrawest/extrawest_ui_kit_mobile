@@ -66,19 +66,19 @@ class SignIn extends StatelessWidget {
 
   const SignIn({
     required this.authType,
-    this.emailController,
     this.isResetPasswordEnabled = false,
     this.isSignUpEnabled = false,
     this.isGuestEnabled = false,
+    this.useSafeArea = true,
+    this.socialAuthProviders = const [],
+    this.emailController,
     this.passwordController,
     this.phoneNumberController,
     this.emailValidator,
     this.passwordValidator,
     this.phoneNumberValidator,
-    this.socialAuthProviders = const [],
     this.contentPadding,
     this.title,
-    this.useSafeArea = true,
     Key? key,
   }) : super(key: key);
 
