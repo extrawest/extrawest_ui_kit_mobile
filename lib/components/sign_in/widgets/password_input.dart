@@ -6,12 +6,15 @@ class PasswordInput extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
 
+  final String? hintText;
+
   final bool isResetPasswordEnabled;
 
   const PasswordInput({
     this.controller,
     this.validator,
     this.isResetPasswordEnabled = true,
+    this.hintText,
     Key? key,
   }) : super(key: key);
 
@@ -30,7 +33,7 @@ class _PasswordInputState extends State<PasswordInput> {
           controller: widget.controller,
           prefixIcon: const Icon(Icons.lock_outline),
           keyboardType: TextInputType.emailAddress,
-          hintText: 'Password',
+          hintText: widget.hintText ?? 'Password',
           obscure: _isObscured,
           suffixIcon: Material(
             color: Colors.transparent,

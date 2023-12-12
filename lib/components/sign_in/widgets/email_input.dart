@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class EmailInput extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final String? hintText;
 
   const EmailInput({
     this.controller,
     this.validator,
+    this.hintText,
     Key? key,
   }) : super(key: key);
 
@@ -17,7 +19,7 @@ class EmailInput extends StatelessWidget {
       controller: controller,
       prefixIcon: const Icon(Icons.email_outlined),
       keyboardType: TextInputType.emailAddress,
-      hintText: 'Email',
+      hintText: hintText,
       validator: validator,
     );
   }
