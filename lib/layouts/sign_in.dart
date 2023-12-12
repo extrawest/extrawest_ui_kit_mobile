@@ -156,11 +156,19 @@ class SignIn extends StatelessWidget {
 
   Widget _buildAuthProvider(BuildContext context) {
     final showTitle = socialAuthProviders.length < 3;
+    final List<Widget> buttons = [];
+
+    for (int i = 0; i <= socialAuthProviders.length - 1; i++) {
+      buttons.add(buildSocialButton(socialAuthProviders[i], showTitle));
+
+      if (i < socialAuthProviders.length - 1) {
+        buttons.add(const SizedBox(width: 16));
+      }
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ...socialAuthProviders.map((social) => buildSocialButton(social, showTitle)).toList(),
-      ],
+      children: buttons,
     );
   }
 
