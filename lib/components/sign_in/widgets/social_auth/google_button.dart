@@ -12,7 +12,7 @@ class GoogleButton extends SocialAuthButton {
   @override
   Widget build(BuildContext context) {
     return SocialButtonBody(
-      onTap: () {},
+      onTap: onTap,
       icon: const FlutterLogo(),
       title: 'Google',
       showTitle: showTitle,

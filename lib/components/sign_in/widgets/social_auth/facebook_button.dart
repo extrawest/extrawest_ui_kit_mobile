@@ -12,7 +12,7 @@ class FacebookButton extends SocialAuthButton {
   @override
   Widget build(BuildContext context) {
     return SocialButtonBody(
-      onTap: () {},
+      onTap: onTap,
       icon: const FlutterLogo(),
       title: 'Facebook',
       showTitle: showTitle,
