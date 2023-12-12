@@ -10,6 +10,7 @@ class EWTextField extends StatelessWidget {
   final bool obscure;
   final Widget? suffixIcon;
   final TextEditingController? controller;
+  final Color? cursorColor;
 
   const EWTextField({
     this.controller,
@@ -20,6 +21,7 @@ class EWTextField extends StatelessWidget {
     this.prefixIcon,
     this.errorText,
     this.obscure = false,
+    this.cursorColor,
     this.suffixIcon,
     Key? key,
   }) : super(key: key);
@@ -37,7 +39,7 @@ class EWTextField extends StatelessWidget {
         suffixIcon: suffixIcon,
         errorText: errorText,
       ),
-      cursorColor: theme.colorScheme.primary,
+      cursorColor: cursorColor,
       style: textStyle,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,
