@@ -30,8 +30,6 @@ enum TextScale {
 }
 
 extension ContextExtension on BuildContext {
-  //#region Text Style
-
   TextStyle textStyle(
     TextScale scale, {
     Color? color,
