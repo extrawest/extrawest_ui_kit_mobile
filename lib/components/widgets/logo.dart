@@ -1,3 +1,4 @@
+import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
@@ -7,13 +8,14 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(color: Colors.yellow),
+        ColoredBox(color: theme.colorScheme.onSurfaceVariant),
         Text(
           title ?? '',
-          style: Theme.of(context).textTheme.headlineLarge,
+          style: context.textStyle(TextScale.headlineMedium),
         ),
       ],
     );
