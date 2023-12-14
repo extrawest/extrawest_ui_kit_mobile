@@ -21,10 +21,7 @@ class SignInLayout extends StatelessWidget {
         left: useSafeArea,
         right: useSafeArea,
         child: Padding(
-          padding: contentPadding ??
-              (MediaQuery.of(context).orientation == Orientation.portrait
-                  ? const EdgeInsets.symmetric(horizontal: 16.0)
-                  : const EdgeInsets.symmetric(horizontal: 102.0)),
+          padding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 16.0),
           child: child,
         ),
       ),
