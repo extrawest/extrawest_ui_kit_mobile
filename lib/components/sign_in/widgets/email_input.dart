@@ -19,7 +19,7 @@ class EmailInput extends StatelessWidget {
       controller: controller,
       prefixIcon: const Icon(Icons.email_outlined),
       keyboardType: TextInputType.emailAddress,
-      hintText: hintText,
+      hintText: hintText ?? 'Email',
       validator: validator,
     );
   }
