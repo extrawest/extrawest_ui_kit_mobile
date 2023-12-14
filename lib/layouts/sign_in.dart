@@ -57,15 +57,16 @@ class SignIn extends StatelessWidget {
     return SignInLayout(
       contentPadding: contentPadding,
       useSafeArea: useSafeArea,
-      child: LayoutBuilder(
-        builder: (context, constraints) => SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
-            child: IntrinsicHeight(
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: Logo(title: title)),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Align(
+              alignment: Alignment.bottomCenter,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Logo(title: title),
-                  const Spacer(),
                   Text(
                     'Sign In',
                     style: context.textStyle(TextScale.titleLarge),
@@ -121,7 +122,7 @@ class SignIn extends StatelessWidget {
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
