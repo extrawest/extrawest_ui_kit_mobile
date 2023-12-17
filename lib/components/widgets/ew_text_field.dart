@@ -11,9 +11,11 @@ class EWTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final TextEditingController? controller;
   final Color? cursorColor;
+  final AutovalidateMode autoValidateMode;
 
   const EWTextField({
     this.obscure = false,
+    this.autoValidateMode = AutovalidateMode.onUserInteraction,
     this.controller,
     this.keyboardType,
     this.textStyle,
@@ -41,7 +43,7 @@ class EWTextField extends StatelessWidget {
       ),
       cursorColor: cursorColor,
       style: textStyle,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: autoValidateMode,
       keyboardType: keyboardType,
       validator: validator,
       obscureText: obscure,
