@@ -11,22 +11,26 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+# extrawest_ui_kit
+A flutter package that provides you with ready Material 3 UI components
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+1. Basic Material 3 UI componets:
+    - Buttons (`Elevated`, `Filled`, `Text`, `Outlined`, `Icon`)
+    - Text Fields (Email, Password, Custom)
+    - Texts widgets with different [Material 3](https://flutter.github.io/samples/web/material_3_demo/) styles
+2. Ready to use Layouts with ability to change components dynamically.
+    - Sign In layout with components: Email, Password inputs, Password recovery section, etc.
+    - Create Account layout with textfields validation
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+The advantage of these layouts is that they come with built-in components having default parameters, which also can be customized to fit the application's requirements.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+There are 2 approaches you can use package's components:
+1. Using ready Layouts with specifying needed parameters(or use default ones)
+2. Using components separately to your own goals.
 
 ```dart
 const like = 'sample';
