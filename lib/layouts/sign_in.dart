@@ -23,12 +23,17 @@ class SignIn extends StatelessWidget {
   final String? Function(String?)? emailValidator;
   final String? Function(String?)? phoneNumberValidator;
 
+  final void Function()? onCreateAccountTap;
+  final void Function()? onSignInTap;
+  final void Function()? onSignInAsGuestTap;
+  final void Function()? onPasswordRecoveryTap;
+
   final String? title;
   final bool isResetPasswordEnabled;
   final bool isSignUpEnabled;
   final bool isGuestEnabled;
 
-  final List<SocialAuthProvider> socialAuthProviders;
+  final List<SocialAuthProviderElement> socialAuthProviders;
 
   final EdgeInsets? contentPadding;
   final bool useSafeArea;
@@ -48,6 +53,10 @@ class SignIn extends StatelessWidget {
     this.phoneNumberValidator,
     this.contentPadding,
     this.title,
+    this.onCreateAccountTap,
+    this.onSignInTap,
+    this.onSignInAsGuestTap,
+    this.onPasswordRecoveryTap,
     Key? key,
   }) : super(key: key);
 
@@ -83,6 +92,7 @@ class SignIn extends StatelessWidget {
                       controller: passwordController,
                       validator: passwordValidator,
                       isResetPasswordEnabled: isResetPasswordEnabled,
+                      onPasswordRecoveryTap: onPasswordRecoveryTap,
                     ),
                     const SizedBox(height: 32),
                   ],
@@ -90,17 +100,20 @@ class SignIn extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
+                        EWBaseButton.filled(onPressed: onSignInTap, title: 'Sign In'),
                         if (isGuestEnabled) ...[
                           const SizedBox(height: 16),
-                          EWBaseButton.outlined(onPressed: () {}, title: 'Sign In as Guest'),
+                          EWBaseButton.outlined(onPressed: onSignInAsGuestTap, title: 'Sign In as Guest'),
                         ],
                       ],
                     ),
                   ),
                   const SizedBox(height: 40),
                   if (socialAuthProviders.isNotEmpty) ...[
-                    _buildAuthProvider(context),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                      child: _buildAuthProvider(context),
+                    ),
                     const SizedBox(height: 24),
                   ],
                   if (isSignUpEnabled)
@@ -112,7 +125,7 @@ class SignIn extends StatelessWidget {
                           style: context.textStyle(TextScale.bodyMedium),
                         ),
                         EWBaseButton.text(
-                          onPressed: () {},
+                          onPressed: onCreateAccountTap,
                           title: 'Create an account',
                         ),
                       ],
@@ -137,28 +150,28 @@ class SignIn extends StatelessWidget {
       }
     });
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      alignment: WrapAlignment.center,
       children: socialButtons,
     );
   }
 
-  Widget buildSocialButton(SocialAuthProvider social, bool showTitle) {
-    return switch (social) {
+  Widget buildSocialButton(SocialAuthProviderElement social, bool showTitle) {
+    return switch (social.socialAuthProvider) {
       SocialAuthProvider.google => GoogleButton(
-          onTap: () {},
+          onTap: social.onTap,
           showTitle: showTitle,
         ),
       SocialAuthProvider.appleId => AppleButton(
-          onTap: () {},
+          onTap: social.onTap,
           showTitle: showTitle,
         ),
       SocialAuthProvider.facebook => FacebookButton(
-          onTap: () {},
+          onTap: social.onTap,
           showTitle: showTitle,
         ),
       SocialAuthProvider.x => XButton(
-          onTap: () {},
+          onTap: social.onTap,
           showTitle: showTitle,
         ),
     };
