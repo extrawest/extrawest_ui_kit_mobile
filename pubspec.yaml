@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  font_awesome_flutter: ^10.6.0
+  intl_phone_number_input: ^0.7.3+1
 
 dev_dependencies:
   flutter_test:

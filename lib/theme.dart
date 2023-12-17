@@ -67,3 +67,18 @@ const darkColorScheme = ColorScheme(
   outlineVariant: Color(0xFF4C4639),
   scrim: Color(0xFF000000),
 );
+
+InputDecorationTheme createInputDecTheme(BuildContext context) {
+  final inputDecorationTheme = Theme.of(context).inputDecorationTheme;
+  return inputDecorationTheme.copyWith(
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(4.0),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(4.0),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(4.0),
+    ),
+  );
+}
