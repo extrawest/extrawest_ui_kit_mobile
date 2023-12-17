@@ -13,7 +13,7 @@ class FacebookButton extends SocialAuthButton {
   Widget build(BuildContext context) {
     return SocialButtonBody(
       onTap: onTap,
-      icon: const FlutterLogo(),
+      icon: const Icon(Icons.facebook_outlined, color: Colors.blue),
       title: 'Facebook',
       showTitle: showTitle,
     );

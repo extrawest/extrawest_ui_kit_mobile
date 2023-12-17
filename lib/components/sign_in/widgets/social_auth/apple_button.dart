@@ -13,7 +13,7 @@ class AppleButton extends SocialAuthButton {
   Widget build(BuildContext context) {
     return SocialButtonBody(
       onTap: onTap,
-      icon: const FlutterLogo(),
+      icon: const Icon(Icons.apple_outlined, color: Colors.black),
       title: 'Apple',
       showTitle: showTitle,
     );
