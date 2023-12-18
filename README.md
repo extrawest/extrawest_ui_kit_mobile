@@ -50,6 +50,7 @@ EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
 
 // OutlinedButton - passing parameter approach
 EWBaseButton(buttonType: Outlined(), onPressed: () {}, title: 'Sign In'),
+```
 2. EWBaseTextFormField
 ```dart
 // Use base textfield with custom configuration
