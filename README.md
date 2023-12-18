@@ -32,12 +32,172 @@ There are 2 approaches you can use package's components:
 1. Using ready Layouts with specifying needed parameters(or use default ones)
 2. Using components separately to your own goals.
 
-```dart
-const like = 'sample';
+## Available Customizable Components:
+
+1. EWBaseButton
+2. EWBaseTextFormField
+3. Inputs based on EWBaseTextFormField: `EmailInput`, `PasswordInput`
+4. Social Auth Provider buttons: `Google`, `Apple`, `Facebook`, `X`
+5. Text widgets with various Material 3 scales (`labelLarge`, `labelMedium`, `labelSmall` etc)
+6. Logo
+
+## Available customizable layouts
+1. Sign In
+2. Create account
+
+## How to use components
+
+If you want to use components separately, just find required components and specify it with necessary parameters:
+``` shell
+// Inputs
+EmailInput(
+    controller: emailController,
+    hintText: 'Email Address'
+    validator: (value) {
+        if (value == null && value.isEmpty)
+            return 'Invalid email';
+        }
+        return null;
+    },
+),
 ```
 
-## Additional information
+```shell
+// FilledButton - factory constructor approach
+EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+// OutlinedButton - passing parameter approach
+EWBaseButton(buttonType: Outlined(), onPressed: () {}, title: 'Sign In'),
+```
+
+``` shell
+// Use Social button
+AppleButton(
+    showTitle: false,
+    onTap: () {
+    // add tap handler here
+    },
+),
+```
+
+```shell
+// Use base textfield with custom configuration
+EWTextField(
+    controller: controller,
+    autoValidateMode: AutovalidateMode.always,
+    keyboardType: TextInputType.phone,
+    prefixIcon: const Icon(Icons.add),
+    errorText: 'Error',
+    cursorColor: Colors.red,
+    suffixIcon: const Text('Clear'),
+),
+```
+
+## Layout example
+
+``` shell
+import 'package:extrawest_ui_kit/extrawest_ui_kit.dart';
+import 'package:extrawest_ui_kit_app/common/screens/sign_up.dart';
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SignIn(
+      emailController: _emailController,
+      passwordController: _passwordController,
+      useSafeArea: true,
+      authType: AuthType.emailPassword,
+      title: 'Test',
+      isSignUpEnabled: true,
+      isResetPasswordEnabled: true,
+      isGuestEnabled: true,
+      onCreateAccountTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SignUpScreen(),
+        ),
+      ),
+      onSignInTap: () => ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 2),
+          content: Text('Sign In Attempt'),
+        ),
+      ),
+      onSignInAsGuestTap: () => ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 2),
+          content: Text('Sign In as Guest Tap'),
+        ),
+      ),
+      onPasswordRecoveryTap: () => ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 2),
+          content: Text('Password recovery'),
+        ),
+      ),
+      socialAuthProviders: [
+        SocialAuthProviderElement(
+          socialAuthProvider: SocialAuthProvider.facebook,
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Facebook login'),
+              ),
+            );
+          },
+        ),
+        SocialAuthProviderElement(
+          socialAuthProvider: SocialAuthProvider.google,
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Google login'),
+              ),
+            );
+          },
+        ),
+        SocialAuthProviderElement(
+          socialAuthProvider: SocialAuthProvider.x,
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('X login'),
+              ),
+            );
+          },
+        ),
+        SocialAuthProviderElement(
+          socialAuthProvider: SocialAuthProvider.appleId,
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Apple login'),
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+```
+
