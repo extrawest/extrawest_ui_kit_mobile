@@ -14,6 +14,8 @@ and the Flutter guide for
 # extrawest_ui_kit
 A flutter package that provides you with ready Material 3 UI components
 
+https://github.com/extrawest/extrawest_ui_kit_mobile/assets/117409513/10444169-8faa-47f8-a4be-bb32de347f60
+
 ## Features
 
 1. Basic Material 3 UI componets:
@@ -35,20 +37,27 @@ There are 2 approaches you can use package's components:
 ## Available Customizable Components:
 
 1. EWBaseButton
+```dart
+// FilledButton - factory constructor approach
+EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
+
+// OutlinedButton - passing parameter approach
+EWBaseButton(buttonType: Outlined(), onPressed: () {}, title: 'Sign In'),
 2. EWBaseTextFormField
+```dart
+// Use base textfield with custom configuration
+EWTextField(
+    controller: controller,
+    autoValidateMode: AutovalidateMode.always,
+    keyboardType: TextInputType.phone,
+    prefixIcon: const Icon(Icons.add),
+    errorText: 'Error',
+    cursorColor: Colors.red,
+    suffixIcon: const Text('Clear'),
+),
+```
 3. Inputs based on EWBaseTextFormField: `EmailInput`, `PasswordInput`
-4. Social Auth Provider buttons: `Google`, `Apple`, `Facebook`, `X`
-5. Text widgets with various Material 3 scales (`labelLarge`, `labelMedium`, `labelSmall` etc)
-6. Logo
-
-## Available customizable layouts
-1. Sign In
-2. Create account
-
-## How to use components
-
-If you want to use components separately, just find required components and specify it with necessary parameters:
-``` shell
+``` dart
 // Inputs
 EmailInput(
     controller: emailController,
@@ -61,16 +70,9 @@ EmailInput(
     },
 ),
 ```
-
-```shell
-// FilledButton - factory constructor approach
-EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
-
-// OutlinedButton - passing parameter approach
-EWBaseButton(buttonType: Outlined(), onPressed: () {}, title: 'Sign In'),
 ```
-
-``` shell
+4. Social Auth Provider buttons: `Google`, `Apple`, `Facebook`, `X`
+``` dart
 // Use Social button
 AppleButton(
     showTitle: false,
@@ -79,23 +81,45 @@ AppleButton(
     },
 ),
 ```
-
-```shell
-// Use base textfield with custom configuration
-EWTextField(
-    controller: controller,
-    autoValidateMode: AutovalidateMode.always,
-    keyboardType: TextInputType.phone,
-    prefixIcon: const Icon(Icons.add),
-    errorText: 'Error',
-    cursorColor: Colors.red,
-    suffixIcon: const Text('Clear'),
+5. Text widgets with various Material 3 scales (`titleLarge`, `labelMedium`, `labelSmall` etc)
+Access TextStyle from BuildContext context and pass TextScale as a positional argument
+```dart
+Text(
+    'Sign In',
+    style: context.textStyle(TextScale.titleLarge),
 ),
 ```
+You can also specify other default TextStyle parameters
 
-## Layout example
+```dart
+Text(
+    'Sign In',
+    style: context.textStyle(
+      TextScale.titleLarge,
+      fontStyle: FontStyle.italic,
+      color: Colors.black
+    ),
+),
+```
+6. Logo
+```dart
+Logo(
+  title: title,
+  asset: 'path/to/asset',
+),
+```
+## Available customizable layouts
+1. Sign In
+2. Create account
 
-``` shell
+## How to use components
+
+If you want to use components separately, just find required components and specify it with necessary parameters:
+
+
+## Layout usage
+
+``` dart
 import 'package:extrawest_ui_kit/extrawest_ui_kit.dart';
 import 'package:extrawest_ui_kit_app/common/screens/sign_up.dart';
 import 'package:flutter/material.dart';
