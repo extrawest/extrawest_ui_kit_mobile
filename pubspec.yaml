@@ -10,15 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  widgetbook: ^3.3.0
-  widgetbook_annotation: ^3.0.0
+  font_awesome_flutter: ^10.6.0
+  intl_phone_number_input: ^0.7.3+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  widgetbook_generator: ^3.2.0
-  build_runner: ^2.4.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
