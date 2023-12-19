@@ -1,7 +1,6 @@
 import 'package:extrawest_ui_kit/components/sign_in/auth_type.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/email_input.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/password_input.dart';
-import 'package:extrawest_ui_kit/components/sign_in/widgets/phone_number_input.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/apple_button.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/facebook_button.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/google_button.dart';
@@ -85,7 +84,6 @@ class SignIn extends StatelessWidget {
                       controller: emailController,
                       validator: emailValidator,
                     ),
-                  if (authType.isPhoneNumber) const PhoneNumberInput(),
                   const SizedBox(height: 16),
                   if (authType.isEmailPassword || authType.isPhoneNumber) ...[
                     PasswordInput(
