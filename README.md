@@ -17,7 +17,7 @@ and the Flutter guide for
 [![Maintaner](https://img.shields.io/static/v1?label=Extrawest&message=Maintainer&color=red)](mailto:roman.ovsepian@extrawest.com)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg
 )](https://github.com/extrawest/extrawest_ui_kit_mobile/issues)
-![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 ![GitHub release](https://img.shields.io/badge/release-v0.0.1-blue)
 ![Supported Platforms](https://img.shields.io/badge/Platform-Android%20|%20iOS%20|%20Web%20%20-blue.svg?logo=flutter)
 [![View DEMO](https://img.shields.io/badge/VIEW-DEMO-lightgreen.svg)](https://65815ecf1d85b80493439f81--capable-toffee-aa697f.netlify.app/)
@@ -244,3 +244,5 @@ Please file Extrawest UI Kit specific issues, bugs, or feature requests in our [
 1. Push to the branch: `git push origin new-cool-tip`
 1. Submit a pull request.
 
+## LICENSE
+BSD-3-Clause
