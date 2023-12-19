@@ -11,24 +11,30 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-# extrawest_ui_kit
+# Extrawest UI Kit
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)]()
 [![Maintaner](https://img.shields.io/static/v1?label=Extrawest&message=Maintainer&color=red)](mailto:roman.ovsepian@extrawest.com)
-[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)]()
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg
+)](https://github.com/extrawest/extrawest_ui_kit_mobile/issues)
 ![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
 ![GitHub release](https://img.shields.io/badge/release-v0.0.1-blue)
+![Supported Platforms](https://img.shields.io/badge/Platform-Android%20|%20iOS%20|%20Web%20%20-blue.svg?logo=flutter)
+[![View DEMO](https://img.shields.io/badge/VIEW-DEMO-lightgreen.svg)](https://65815ecf1d85b80493439f81--capable-toffee-aa697f.netlify.app/)
 
-A flutter package that provides you with ready Material 3 UI components
+Flutter package that provides Extrawest UI Kit based on Material 3 UI components
 
-https://github.com/extrawest/extrawest_ui_kit_mobile/assets/117409513/10444169-8faa-47f8-a4be-bb32de347f60
+## DEMO
+
+https://github.com/extrawest/extrawest_ui_kit_mobile/assets/117409513/41d61888-72e1-46a9-95eb-64e46da70e66
+
 
 ## Features
 
-1. Basic Material 3 UI componets:
+1. Extawest UI Components based on [Material 3](https://m3.material.io/develop/flutter)
     - Buttons (`Elevated`, `Filled`, `Text`, `Outlined`, `Icon`)
     - Text Fields (Email, Password, Custom)
-    - Texts widgets with different [Material 3](https://flutter.github.io/samples/web/material_3_demo/) styles
+    - Texts widgets with different [Material 3](https://m3.material.io/develop/flutter) styles
 2. Ready to use Layouts with ability to change components dynamically.
     - Sign In layout with components: Email, Password inputs, Password recovery section, etc.
     - Create Account layout with textfields validation
@@ -49,7 +55,7 @@ There are 2 approaches you can use package's components:
 EWBaseButton.filled(onPressed: () {}, title: 'Sign In'),
 
 // OutlinedButton - passing parameter approach
-EWBaseButton(buttonType: Outlined(), onPressed: () {}, title: 'Sign In'),
+EWBaseButton(buttonType: Filled(), onPressed: () {}, title: 'Sign In'),
 ```
 2. EWBaseTextFormField
 ```dart
@@ -78,7 +84,7 @@ EmailInput(
     },
 ),
 ```
-```
+
 4. Social Auth Provider buttons: `Google`, `Apple`, `Facebook`, `X`
 ``` dart
 // Use Social button
@@ -227,4 +233,14 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 ```
+
+## Feedback
+Please file Extrawest UI Kit specific issues, bugs, or feature requests in our [issue tracker](https://github.com/extrawest/extrawest_ui_kit_mobile/issues).
+
+## Contributing
+1. Fork it!
+1. Create your feature branch: `git checkout -b new-cool-tip`
+1. Commit your changes: `git commit -am 'Added new tip'`
+1. Push to the branch: `git push origin new-cool-tip`
+1. Submit a pull request.
 
