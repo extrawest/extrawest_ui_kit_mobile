@@ -117,13 +117,8 @@ Logo(
 ),
 ```
 ## Available customizable layouts
-1. Sign In
-2. Create account
-
-## How to use components
-
-If you want to use components separately, just find required components and specify it with necessary parameters:
-
+1. `SignIn`
+2. `CreateAccount`
 
 ## Layout usage
 
