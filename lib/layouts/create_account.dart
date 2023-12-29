@@ -1,4 +1,3 @@
-import 'package:extrawest_ui_kit/components/sign_in/auth_type.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/email_input.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/password_input.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/apple_button.dart';
@@ -6,6 +5,7 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/facebook
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/google_button.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/social_auth_provider.dart';
 import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/x_button.dart';
+import 'package:extrawest_ui_kit/components/sign_in/widgets/username_input.dart';
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/logo.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
@@ -13,7 +13,6 @@ import 'package:extrawest_ui_kit/layouts/sign_in_layout.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccount extends StatelessWidget {
-  final AuthType authType;
   final TextEditingController? emailController;
   final TextEditingController? phoneNumberController;
   final TextEditingController? passwordController;
@@ -25,11 +24,16 @@ class CreateAccount extends StatelessWidget {
   final void Function()? onCreateAccountTap;
   final void Function()? onSignUpTap;
   final void Function()? onPasswordRecoveryTap;
+  final void Function()? onPrivacyPolicyTap;
+  final void Function()? onTermsAndConditionTap;
 
   final String? title;
-  final bool isResetPasswordEnabled;
   final bool isSignInEnabled;
   final AutovalidateMode autoValidateMode;
+
+  final bool isEmailEnabled;
+  final bool isUsernameEnabled;
+  final bool isPasswordEnabled;
 
   final List<SocialAuthProviderElement> socialAuthProviders;
 
@@ -37,9 +41,10 @@ class CreateAccount extends StatelessWidget {
   final bool useSafeArea;
 
   const CreateAccount({
-    required this.authType,
-    this.isResetPasswordEnabled = false,
     this.isSignInEnabled = false,
+    this.isUsernameEnabled = false,
+    this.isEmailEnabled = true,
+    this.isPasswordEnabled = false,
     this.useSafeArea = true,
     this.socialAuthProviders = const [],
     this.autoValidateMode = AutovalidateMode.onUserInteraction,
@@ -54,6 +59,8 @@ class CreateAccount extends StatelessWidget {
     this.onCreateAccountTap,
     this.onSignUpTap,
     this.onPasswordRecoveryTap,
+    this.onPrivacyPolicyTap,
+    this.onTermsAndConditionTap,
     Key? key,
   }) : super(key: key);
 
@@ -77,17 +84,21 @@ class CreateAccount extends StatelessWidget {
                     style: context.textStyle(TextScale.titleLarge),
                   ),
                   const SizedBox(height: 40),
-                  if (authType.isEmailPassword || authType.isEmailLink)
+                  if (isEmailEnabled)
                     EmailInput(
                       controller: emailController,
                       validator: emailValidator,
                     ),
                   const SizedBox(height: 16),
-                  if (authType.isEmailPassword || authType.isPhoneNumber) ...[
+                  if (isUsernameEnabled) ...[
+                    const UsernameInput(),
+                    const SizedBox(height: 16),
+                  ],
+                  if (isPasswordEnabled) ...[
                     PasswordInput(
                       controller: passwordController,
                       validator: passwordValidator,
-                      isResetPasswordEnabled: isResetPasswordEnabled,
+                      isResetPasswordEnabled: false,
                       onPasswordRecoveryTap: onPasswordRecoveryTap,
                     ),
                     const SizedBox(height: 32),
@@ -100,7 +111,9 @@ class CreateAccount extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 24),
+                  _buildApproveSection(),
+                  const SizedBox(height: 32),
                   if (socialAuthProviders.isNotEmpty) ...[
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -128,6 +141,35 @@ class CreateAccount extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildApproveSection() {
+    if (onPrivacyPolicyTap == null && onTermsAndConditionTap == null) {
+      return const SizedBox();
+    }
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      alignment: WrapAlignment.center,
+      runAlignment: WrapAlignment.center,
+      children: [
+        const Text(
+          'By proceeding you agree with',
+          textAlign: TextAlign.start,
+        ),
+        if (onPrivacyPolicyTap != null)
+          EWBaseButton.text(
+            title: 'Privacy Policy',
+            onPressed: onPrivacyPolicyTap,
+          ),
+        if (onPrivacyPolicyTap != null && onTermsAndConditionTap != null) const Text('and '),
+        if (onTermsAndConditionTap != null) ...[
+          EWBaseButton.text(
+            title: 'Terms and conditions',
+            onPressed: onTermsAndConditionTap,
+          )
+        ],
+      ],
     );
   }
 
