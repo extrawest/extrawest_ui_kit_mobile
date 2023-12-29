@@ -13,7 +13,7 @@ class PasswordInput extends StatefulWidget {
   final VoidCallback? onPasswordRecoveryTap;
 
   const PasswordInput({
-    this.isResetPasswordEnabled = true,
+    this.isResetPasswordEnabled = false,
     this.controller,
     this.validator,
     this.onPasswordRecoveryTap,
