@@ -8,17 +8,17 @@ class OTPVerification extends StatelessWidget {
   final VoidCallback? onVerifyPressed;
   final dynamic Function(String)? onCodeSubmitted;
   final dynamic Function(String)? onCodeChanged;
-  final int? codeLength;
+  final int codeLength;
   final VoidCallback? onResendPressed;
   final String phoneNumber;
 
   const OTPVerification({
     required this.phoneNumber,
+    this.codeLength = 6,
     this.onVerifyPressed,
     this.onResendPressed,
     this.onCodeSubmitted,
     this.onCodeChanged,
-    this.codeLength,
     Key? key,
   }) : super(key: key);
 
@@ -56,7 +56,7 @@ class OTPVerification extends StatelessWidget {
             ),
             onCodeSubmitted: onCodeSubmitted,
             onCodeChanged: onCodeChanged,
-            codeLength: codeLength ?? 6,
+            codeLength: codeLength,
           ),
           const SizedBox(height: 24),
           Wrap(
