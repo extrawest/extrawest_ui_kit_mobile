@@ -11,6 +11,7 @@ class OTPVerification extends StatelessWidget {
   final int codeLength;
   final VoidCallback? onResendPressed;
   final String phoneNumber;
+  final Widget? logo;
 
   const OTPVerification({
     required this.phoneNumber,
@@ -19,6 +20,7 @@ class OTPVerification extends StatelessWidget {
     this.onResendPressed,
     this.onCodeSubmitted,
     this.onCodeChanged,
+    this.logo,
     Key? key,
   }) : super(key: key);
 
@@ -28,14 +30,10 @@ class OTPVerification extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Placeholder(
-            child: SizedBox(
-              height: 200,
-              width: 200,
-              child: Center(child: Text('Mascot')),
-            ),
-          ),
-          const SizedBox(height: 40),
+          if (logo != null) ...[
+            logo!,
+            const SizedBox(height: 40),
+          ],
           Text(
             'Enter the OTP sent to',
             style: context.textStyle(TextScale.titleLarge),

@@ -3,14 +3,14 @@ import 'package:extrawest_ui_kit/extrawest_ui_kit.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
-  final Widget? mascot;
+  final Widget? logo;
   final String? title;
   final String? backgroundPath;
   final Color? backgroundColor;
 
   const SplashScreen({
     this.title,
-    this.mascot,
+    this.logo,
     this.backgroundPath,
     this.backgroundColor,
     Key? key,
@@ -30,7 +30,10 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (mascot != null) mascot!,
+            if (logo != null) ...[
+              logo!,
+              const SizedBox(height: 40),
+            ],
             if (title != null)
               Center(
                 child: Text(

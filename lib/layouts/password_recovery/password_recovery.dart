@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 class PasswordRecovery extends StatelessWidget {
   final VoidCallback onSendPressed;
   final TextEditingController emailController;
+  final Widget? logo;
 
   const PasswordRecovery({
     required this.onSendPressed,
     required this.emailController,
+    this.logo,
     Key? key,
   }) : super(key: key);
 
@@ -20,14 +22,10 @@ class PasswordRecovery extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Placeholder(
-            child: SizedBox(
-              height: 200,
-              width: 200,
-              child: Center(child: Text('Mascot')),
-            ),
-          ),
-          const SizedBox(height: 40),
+          if (logo != null) ...[
+            logo!,
+            const SizedBox(height: 40),
+          ],
           Text(
             'Password recovery',
             style: context.textStyle(TextScale.titleLarge),

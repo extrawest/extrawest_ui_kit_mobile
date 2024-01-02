@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 class OTPEnterPhone extends StatelessWidget {
   final VoidCallback onSendPressed;
   final TextEditingController controller;
+  final Widget? logo;
 
   const OTPEnterPhone({
     required this.onSendPressed,
     required this.controller,
+    this.logo,
     Key? key,
   }) : super(key: key);
 
@@ -20,14 +22,10 @@ class OTPEnterPhone extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Placeholder(
-            child: SizedBox(
-              height: 200,
-              width: 200,
-              child: Center(child: Text('Mascot')),
-            ),
-          ),
-          const SizedBox(height: 40),
+          if (logo != null) ...[
+            logo!,
+            const SizedBox(height: 40),
+          ],
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
