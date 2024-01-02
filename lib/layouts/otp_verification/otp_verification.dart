@@ -1,11 +1,14 @@
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
-import 'package:extrawest_ui_kit/components/widgets/ew_text_field.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
 import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class OTPVerification extends StatelessWidget {
   final VoidCallback? onVerifyPressed;
+  final dynamic Function(String)? onCodeSubmitted;
+  final dynamic Function(String)? onCodeChanged;
+  final int? codeLength;
   final VoidCallback? onResendPressed;
   final String phoneNumber;
 
@@ -13,6 +16,9 @@ class OTPVerification extends StatelessWidget {
     required this.phoneNumber,
     this.onVerifyPressed,
     this.onResendPressed,
+    this.onCodeSubmitted,
+    this.onCodeChanged,
+    this.codeLength,
     Key? key,
   }) : super(key: key);
 
@@ -43,9 +49,14 @@ class OTPVerification extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 40),
-          const EWTextField(
-            hintText: 'OTP code',
-            prefixIcon: Icon(Icons.keyboard_alt_outlined),
+          TextFieldPinAutoFill(
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.keyboard_alt_outlined),
+              hintText: 'OTP code',
+            ),
+            onCodeSubmitted: onCodeSubmitted,
+            onCodeChanged: onCodeChanged,
+            codeLength: codeLength ?? 6,
           ),
           const SizedBox(height: 24),
           Wrap(
