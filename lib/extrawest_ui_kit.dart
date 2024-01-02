@@ -14,4 +14,5 @@ export 'layouts/password_recovery/create_new_password.dart';
 export 'layouts/password_recovery/email_sent.dart';
 export 'layouts/password_recovery/password_recovery.dart';
 export 'layouts/sign_in.dart';
+export 'layouts/splash_screen.dart';
 export 'theme.dart';
