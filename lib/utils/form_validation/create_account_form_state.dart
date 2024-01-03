@@ -4,10 +4,11 @@ import 'package:formz/formz.dart';
 
 class CreateAccFormState with FormzMixin {
   CreateAccFormState({
-    EmailValidation? email,
-    this.password = const PasswordValidation.pure(),
+    EmailValidation? emailValidation,
+    PasswordValidation? passwordValidation,
     this.status = FormzSubmissionStatus.initial,
-  }) : email = email ?? EmailValidation.pure();
+  })  : email = emailValidation ?? EmailValidation.pure(),
+        password = passwordValidation ?? PasswordValidation.pure();
 
   final EmailValidation email;
   final PasswordValidation password;
@@ -19,8 +20,8 @@ class CreateAccFormState with FormzMixin {
     FormzSubmissionStatus? status,
   }) {
     return CreateAccFormState(
-      email: email ?? this.email,
-      password: password ?? this.password,
+      emailValidation: email ?? this.email,
+      passwordValidation: password ?? this.password,
       status: status ?? this.status,
     );
   }
