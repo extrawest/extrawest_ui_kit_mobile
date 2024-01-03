@@ -21,9 +21,10 @@ class CreateAccount extends StatefulWidget {
   final TextEditingController? phoneNumberController;
   final TextEditingController? passwordController;
 
-  final String? Function(String?)? passwordValidator;
-  final String? Function(String?)? emailValidator;
-  final String? Function(String?)? phoneNumberValidator;
+  final RegExp? emailRegExp;
+  final RegExp? passwordRegExp;
+  final String? emailInvalidText;
+  final String? passwordInvalidText;
 
   final void Function()? onCreateAccountTap;
   final void Function()? onSignUpTap;
@@ -55,9 +56,10 @@ class CreateAccount extends StatefulWidget {
     this.emailController,
     this.passwordController,
     this.phoneNumberController,
-    this.emailValidator,
-    this.passwordValidator,
-    this.phoneNumberValidator,
+    this.emailRegExp,
+    this.passwordRegExp,
+    this.emailInvalidText,
+    this.passwordInvalidText,
     this.contentPadding,
     this.title,
     this.onCreateAccountTap,
@@ -98,7 +100,10 @@ class _CreateAccountState extends State<CreateAccount> {
   void _onEmailChanged() {
     setState(() {
       _formState = _formState.copyWith(
-        email: EmailValidation.dirty(widget.emailController!.text),
+        email: EmailValidation.dirty(
+          emailRegExp: widget.emailRegExp,
+          value: widget.emailController!.text,
+        ),
       );
     });
   }
@@ -106,7 +111,10 @@ class _CreateAccountState extends State<CreateAccount> {
   void _onPasswordChanged() {
     setState(() {
       _formState = _formState.copyWith(
-        password: PasswordValidation.dirty(widget.passwordController!.text),
+        password: PasswordValidation.dirty(
+          passwordRegExp: widget.passwordRegExp,
+          value: widget.passwordController!.text,
+        ),
       );
     });
   }
@@ -159,7 +167,8 @@ class _CreateAccountState extends State<CreateAccount> {
                     if (widget.isEmailEnabled)
                       EmailInput(
                         controller: widget.emailController,
-                        validator: (value) => _formState.email.validator(value ?? '')?.text(),
+                        validator: (value) =>
+                            _formState.email.validator(value ?? '')?.text(invalidText: widget.emailInvalidText),
                       ),
                     const SizedBox(height: 16),
                     if (widget.isUsernameEnabled) ...[
@@ -169,7 +178,8 @@ class _CreateAccountState extends State<CreateAccount> {
                     if (widget.isPasswordEnabled) ...[
                       PasswordInput(
                         controller: widget.passwordController,
-                        validator: (value) => _formState.password.validator(value ?? '')?.text(),
+                        validator: (value) =>
+                            _formState.password.validator(value ?? '')?.text(invalidText: widget.passwordInvalidText),
                         isResetPasswordEnabled: false,
                         onPasswordRecoveryTap: widget.onPasswordRecoveryTap,
                       ),
