@@ -10,9 +10,13 @@ import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/logo.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
 import 'package:extrawest_ui_kit/layouts/sign_in_layout.dart';
+import 'package:extrawest_ui_kit/utils/form_validation/create_account_form_state.dart';
+import 'package:extrawest_ui_kit/utils/form_validation/email_validation.dart';
+import 'package:extrawest_ui_kit/utils/form_validation/password_validation.dart';
 import 'package:flutter/material.dart';
+import 'package:formz/formz.dart';
 
-class CreateAccount extends StatelessWidget {
+class CreateAccount extends StatefulWidget {
   final TextEditingController? emailController;
   final TextEditingController? phoneNumberController;
   final TextEditingController? passwordController;
@@ -65,87 +69,159 @@ class CreateAccount extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<CreateAccount> createState() => _CreateAccountState();
+}
+
+class _CreateAccountState extends State<CreateAccount> {
+  final _key = GlobalKey<FormState>();
+  late CreateAccFormState _formState;
+
+  @override
+  void initState() {
+    super.initState();
+    _formState = CreateAccFormState();
+    if (widget.emailController != null) {
+      widget.emailController?.addListener(_onEmailChanged);
+    }
+    if (widget.passwordController != null) {
+      widget.passwordController?.addListener(_onPasswordChanged);
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.emailController?.dispose();
+    widget.passwordController?.dispose();
+    super.dispose();
+  }
+
+  void _onEmailChanged() {
+    setState(() {
+      _formState = _formState.copyWith(
+        email: EmailValidation.dirty(widget.emailController!.text),
+      );
+    });
+  }
+
+  void _onPasswordChanged() {
+    setState(() {
+      _formState = _formState.copyWith(
+        password: PasswordValidation.dirty(widget.passwordController!.text),
+      );
+    });
+  }
+
+  Future<void> _onSubmit() async {
+    if (!_key.currentState!.validate()) return;
+
+    setState(() {
+      _formState = _formState.copyWith(status: FormzSubmissionStatus.inProgress);
+    });
+
+    try {
+      widget.onSignUpTap;
+      _formState = _formState.copyWith(status: FormzSubmissionStatus.success);
+    } catch (_) {
+      _formState = _formState.copyWith(status: FormzSubmissionStatus.failure);
+    }
+
+    if (!mounted) return;
+
+    setState(() {});
+
+    FocusScope.of(context)
+      ..nextFocus()
+      ..unfocus();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SignInLayout(
-      contentPadding: contentPadding,
-      useSafeArea: useSafeArea,
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(child: Logo(title: title)),
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Create Account',
-                    style: context.textStyle(TextScale.titleLarge),
-                  ),
-                  const SizedBox(height: 40),
-                  if (isEmailEnabled)
-                    EmailInput(
-                      controller: emailController,
-                      validator: emailValidator,
+    return Form(
+      key: _key,
+      child: SignInLayout(
+        contentPadding: widget.contentPadding,
+        useSafeArea: widget.useSafeArea,
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: Logo(title: widget.title)),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Create Account',
+                      style: context.textStyle(TextScale.titleLarge),
                     ),
-                  const SizedBox(height: 16),
-                  if (isUsernameEnabled) ...[
-                    const UsernameInput(),
+                    const SizedBox(height: 40),
+                    if (widget.isEmailEnabled)
+                      EmailInput(
+                        controller: widget.emailController,
+                        validator: (value) => _formState.email.validator(value ?? '')?.text(),
+                      ),
                     const SizedBox(height: 16),
-                  ],
-                  if (isPasswordEnabled) ...[
-                    PasswordInput(
-                      controller: passwordController,
-                      validator: passwordValidator,
-                      isResetPasswordEnabled: false,
-                      onPasswordRecoveryTap: onPasswordRecoveryTap,
-                    ),
-                    const SizedBox(height: 32),
-                  ],
-                  IntrinsicWidth(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        EWBaseButton.filled(onPressed: onSignUpTap, title: 'Create Account'),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  _buildApproveSection(),
-                  const SizedBox(height: 32),
-                  if (socialAuthProviders.isNotEmpty) ...[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                      child: _buildAuthProvider(context),
+                    if (widget.isUsernameEnabled) ...[
+                      const UsernameInput(),
+                      const SizedBox(height: 16),
+                    ],
+                    if (widget.isPasswordEnabled) ...[
+                      PasswordInput(
+                        controller: widget.passwordController,
+                        validator: (value) => _formState.password.validator(value ?? '')?.text(),
+                        isResetPasswordEnabled: false,
+                        onPasswordRecoveryTap: widget.onPasswordRecoveryTap,
+                      ),
+                      const SizedBox(height: 32),
+                    ],
+                    IntrinsicWidth(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          EWBaseButton.filled(
+                            onPressed: _onSubmit,
+                            title: 'Create Account',
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 24),
+                    _buildApproveSection(),
+                    const SizedBox(height: 32),
+                    if (widget.socialAuthProviders.isNotEmpty) ...[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                        child: _buildAuthProvider(context),
+                      ),
+                      const SizedBox(height: 24),
+                    ],
+                    if (widget.isSignInEnabled)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Already have an account?",
+                            style: context.textStyle(TextScale.bodyMedium),
+                          ),
+                          EWBaseButton.text(
+                            onPressed: widget.onCreateAccountTap,
+                            title: 'Sign In',
+                          ),
+                        ],
+                      ),
                   ],
-                  if (isSignInEnabled)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Already have an account?",
-                          style: context.textStyle(TextScale.bodyMedium),
-                        ),
-                        EWBaseButton.text(
-                          onPressed: onCreateAccountTap,
-                          title: 'Sign In',
-                        ),
-                      ],
-                    ),
-                ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildApproveSection() {
-    if (onPrivacyPolicyTap == null && onTermsAndConditionTap == null) {
+    if (widget.onPrivacyPolicyTap == null && widget.onTermsAndConditionTap == null) {
       return const SizedBox();
     }
     return Wrap(
@@ -157,16 +233,16 @@ class CreateAccount extends StatelessWidget {
           'By proceeding you agree with',
           textAlign: TextAlign.start,
         ),
-        if (onPrivacyPolicyTap != null)
+        if (widget.onPrivacyPolicyTap != null)
           EWBaseButton.text(
             title: 'Privacy Policy',
-            onPressed: onPrivacyPolicyTap,
+            onPressed: widget.onPrivacyPolicyTap,
           ),
-        if (onPrivacyPolicyTap != null && onTermsAndConditionTap != null) const Text('and '),
-        if (onTermsAndConditionTap != null) ...[
+        if (widget.onPrivacyPolicyTap != null && widget.onTermsAndConditionTap != null) const Text('and '),
+        if (widget.onTermsAndConditionTap != null) ...[
           EWBaseButton.text(
             title: 'Terms and conditions',
-            onPressed: onTermsAndConditionTap,
+            onPressed: widget.onTermsAndConditionTap,
           )
         ],
       ],
@@ -174,12 +250,12 @@ class CreateAccount extends StatelessWidget {
   }
 
   Widget _buildAuthProvider(BuildContext context) {
-    final showTitle = socialAuthProviders.length < 3;
+    final showTitle = widget.socialAuthProviders.length < 3;
     final List<Widget> socialButtons = [];
 
-    socialAuthProviders.asMap().forEach((index, social) {
+    widget.socialAuthProviders.asMap().forEach((index, social) {
       socialButtons.add(buildSocialButton(social, showTitle));
-      if (index < socialAuthProviders.length - 1) {
+      if (index < widget.socialAuthProviders.length - 1) {
         socialButtons.add(const SizedBox(width: 16));
       }
     });
