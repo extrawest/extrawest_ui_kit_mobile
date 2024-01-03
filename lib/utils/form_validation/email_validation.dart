@@ -3,11 +3,12 @@ import 'package:formz/formz.dart';
 enum EmailValidationError { invalid, empty }
 
 class EmailValidation extends FormzInput<String, EmailValidationError> with FormzInputErrorCacheMixin {
-  EmailValidation.pure([super.value = '']) : super.pure();
+  final RegExp? emailRegExp;
+  EmailValidation.pure({this.emailRegExp, String? value}) : super.pure(value = '');
 
-  EmailValidation.dirty([super.value = '']) : super.dirty();
+  EmailValidation.dirty({this.emailRegExp, String? value}) : super.dirty(value = '');
 
-  static final _emailRegExp = RegExp(
+  static final _defaultEmailRegExp = RegExp(
     r'^[a-zA-Z\d.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z\d-]+(?:\.[a-zA-Z\d-]+)*$',
   );
 
@@ -15,19 +16,24 @@ class EmailValidation extends FormzInput<String, EmailValidationError> with Form
   EmailValidationError? validator(String value) {
     if (value.isEmpty) {
       return EmailValidationError.empty;
-    } else if (!_emailRegExp.hasMatch(value)) {
-      return EmailValidationError.invalid;
+    } else {
+      if (emailRegExp != null) {
+        if (!emailRegExp!.hasMatch(value)) {
+          return EmailValidationError.invalid;
+        }
+      } else if (!_defaultEmailRegExp.hasMatch(value)) {
+        return EmailValidationError.invalid;
+      }
     }
-
     return null;
   }
 }
 
 extension EmailValidationExtension on EmailValidationError {
-  String text() {
+  String text({String? invalidText}) {
     switch (this) {
       case EmailValidationError.invalid:
-        return 'Please ensure the email entered is valid';
+        return invalidText ?? 'Please ensure the email entered is valid';
       case EmailValidationError.empty:
         return 'Please enter an email';
     }
