@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   font_awesome_flutter: ^10.6.0
+  formz: ^0.6.1
   intl_phone_number_input: ^0.7.3+1
   password_strength: ^0.2.0
   sms_autofill: ^2.3.0
