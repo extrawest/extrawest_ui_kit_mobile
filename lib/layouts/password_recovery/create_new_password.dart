@@ -11,6 +11,7 @@ class CreateNewPassword extends StatefulWidget {
   final String? Function(String?)? passwordValidator;
   final String? passwordRequirementsText;
   final bool isPasswordStrengthEnabled;
+  final Widget? logo;
 
   const CreateNewPassword({
     required this.passwordController,
@@ -18,6 +19,7 @@ class CreateNewPassword extends StatefulWidget {
     this.onSaveNewPasswordPressed,
     this.passwordRequirementsText,
     this.passwordValidator,
+    this.logo,
     Key? key,
   }) : super(key: key);
 
@@ -34,9 +36,10 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Placeholder(
-            child: Text('Mascot'),
-          ),
+          if (widget.logo != null) ...[
+            widget.logo!,
+            const SizedBox(height: 40),
+          ],
           const SizedBox(height: 40),
           Text(
             'New password',

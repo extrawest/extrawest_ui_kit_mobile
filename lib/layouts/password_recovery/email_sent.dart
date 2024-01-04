@@ -7,11 +7,13 @@ class EmailSent extends StatelessWidget {
   final VoidCallback? onOpenEmailPressed;
   final VoidCallback? onTryAnotherEmailPressed;
   final String email;
+  final Widget? logo;
 
   const EmailSent({
     required this.email,
     this.onOpenEmailPressed,
     this.onTryAnotherEmailPressed,
+    this.logo,
     Key? key,
   }) : super(key: key);
 
@@ -22,13 +24,10 @@ class EmailSent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Spacer(),
-          const Placeholder(
-            child: SizedBox(
-              height: 200,
-              width: 200,
-              child: Center(child: Text('Mascot')),
-            ),
-          ),
+          if (logo != null) ...[
+            logo!,
+            const SizedBox(height: 40),
+          ],
           const SizedBox(height: 40),
           Text(
             'Email sent to',
