@@ -26,7 +26,7 @@ class CreateNewPassword extends StatefulWidget {
 }
 
 class _CreateNewPasswordState extends State<CreateNewPassword> {
-  final TextEditingController _passwordC = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +49,12 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
           ),
           const SizedBox(height: 40),
           PasswordInput(
-            controller: _passwordC,
+            controller: _passwordController,
             validator: widget.passwordValidator,
           ),
           if (widget.isPasswordStrengthEnabled) ...[
             const SizedBox(height: 8),
-            PasswordStrength(passwordController: _passwordC),
+            PasswordStrength(passwordController: _passwordController),
           ],
           const SizedBox(height: 40),
           EWBaseButton.filled(
