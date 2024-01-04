@@ -4,12 +4,12 @@ import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dar
 import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:flutter/material.dart';
 
-class OTPEnterPhone extends StatelessWidget {
+class OTPEnterPhoneNumber extends StatelessWidget {
   final VoidCallback onSendPressed;
   final TextEditingController controller;
   final Widget? logo;
 
-  const OTPEnterPhone({
+  const OTPEnterPhoneNumber({
     required this.onSendPressed,
     required this.controller,
     this.logo,

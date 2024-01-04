@@ -6,8 +6,8 @@ import 'package:sms_autofill/sms_autofill.dart';
 
 class OTPVerification extends StatelessWidget {
   final VoidCallback? onVerifyPressed;
-  final dynamic Function(String)? onCodeSubmitted;
-  final dynamic Function(String)? onCodeChanged;
+  final Function(String)? onCodeSubmitted;
+  final Function(String)? onCodeChanged;
   final int codeLength;
   final VoidCallback? onResendPressed;
   final String phoneNumber;
@@ -61,7 +61,7 @@ class OTPVerification extends StatelessWidget {
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               Text(
-                "Don't receive the OTP? ",
+                "Didn't receive the OTP? ",
                 style: context.textStyle(TextScale.bodyMedium),
                 textAlign: TextAlign.center,
               ),
