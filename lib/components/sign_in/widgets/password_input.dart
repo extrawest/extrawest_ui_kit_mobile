@@ -13,7 +13,7 @@ class PasswordInput extends StatefulWidget {
   final VoidCallback? onPasswordRecoveryTap;
 
   const PasswordInput({
-    this.isResetPasswordEnabled = true,
+    this.isResetPasswordEnabled = false,
     this.controller,
     this.validator,
     this.onPasswordRecoveryTap,
@@ -31,6 +31,7 @@ class _PasswordInputState extends State<PasswordInput> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         EWTextField(
           controller: widget.controller,

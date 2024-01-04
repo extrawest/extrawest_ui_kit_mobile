@@ -140,10 +140,32 @@ class EWBaseButton extends StatelessWidget {
     final child = title != null ? Text(title!) : const SizedBox();
     final useIcon = icon != null;
     if (!showTitle && useIcon) {
-      return IconButton.outlined(
-        onPressed: onPressed,
-        icon: icon!,
-      );
+      return switch (buttonType) {
+        Filled() => IconButton.filled(
+            onPressed: onPressed,
+            icon: icon!,
+          ),
+        Outlined() => IconButton.outlined(
+            onPressed: onPressed,
+            icon: icon!,
+          ),
+        FilledTonal() => IconButton.filledTonal(
+            onPressed: onPressed,
+            icon: icon!,
+          ),
+        Elevated() => IconButton(
+            onPressed: onPressed,
+            icon: icon!,
+          ),
+        FilledError() => IconButton(
+            onPressed: onPressed,
+            icon: icon!,
+          ),
+        TextType() => IconButton(
+            onPressed: onPressed,
+            icon: icon!,
+          ),
+      };
     }
     return switch (buttonType) {
       Filled() => useIcon
