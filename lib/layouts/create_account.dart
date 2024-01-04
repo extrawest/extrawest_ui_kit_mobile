@@ -76,12 +76,12 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
   final _key = GlobalKey<FormState>();
-  late CreateAccFormState _formState;
+  late CreateAccountFormState _formState;
 
   @override
   void initState() {
     super.initState();
-    _formState = CreateAccFormState();
+    _formState = CreateAccountFormState();
     if (widget.emailController != null) {
       widget.emailController?.addListener(_onEmailChanged);
     }
