@@ -8,6 +8,7 @@ class EWTextField extends StatelessWidget {
   final String? errorText;
   final Widget? prefixIcon;
   final bool obscure;
+  final int? errorMaxLines;
   final Widget? suffixIcon;
   final TextEditingController? controller;
   final Color? cursorColor;
@@ -16,6 +17,7 @@ class EWTextField extends StatelessWidget {
   const EWTextField({
     this.obscure = false,
     this.autoValidateMode = AutovalidateMode.onUserInteraction,
+    this.errorMaxLines = 1,
     this.controller,
     this.keyboardType,
     this.textStyle,
@@ -34,6 +36,7 @@ class EWTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
+        errorMaxLines: errorMaxLines,
         focusedBorder: theme.inputDecorationTheme.focusedBorder,
         errorBorder: theme.inputDecorationTheme.errorBorder,
         labelText: hintText,
