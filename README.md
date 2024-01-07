@@ -38,6 +38,11 @@ https://github.com/extrawest/extrawest_ui_kit_mobile/assets/117409513/41d61888-7
 2. Ready to use Layouts with ability to change components dynamically.
     - Sign In layout with components: Email, Password inputs, Password recovery section, etc.
     - Create Account layout with textfields validation
+    - Password recovery: Send link to email, Open email, Create new password
+    - OTP verification: Enter phone number, Enter OTP code
+    - 2FA app
+    - Splash screen with components: logo, title, background
+    - Error page with components: logo, title, content, retry and back buttons
 
 The advantage of these layouts is that they come with built-in components having default parameters, which also can be customized to fit the application's requirements.
 
@@ -125,9 +130,19 @@ Logo(
 ## Available customizable layouts
 1. `SignIn`
 2. `CreateAccount`
+3. `PasswordRecovery`
+4. `EmailSent`
+5. `CreateNewPassword`
+6. `OTPEnterPhoneNumber`
+7. `OTPVerification`
+8. `TwoFactorAuth`
+9. `SplashScreen`
+10. `ErrorPage`
+
 
 ## Layout usage
 
+`SignIn`
 ``` dart
 import 'package:extrawest_ui_kit/extrawest_ui_kit.dart';
 import 'package:extrawest_ui_kit_app/common/screens/sign_up.dart';
@@ -231,8 +246,39 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
 ```
+
+`OTPEnterPhoneNumber`
+``` dart
+  OTPEnterPhoneNumber(
+      controller: TextEditingController(),
+      logo: Image.asset('path/to/asset'),
+      onSendPressed: () {
+        // add logic here
+      },
+    );
+```
+
+`ErrorPage`
+``` dart
+  ErrorPage(
+      logo: Image.asset('path/to/asset'),
+      title: 'Title',
+      contentText: 'Enter content text here', // If not provided, default content will be used
+      onRetryPressed: () {
+        // add Retry button press handler here
+      },
+      onBackPressed: () {
+        // add Retry button press handler here
+      },
+    );
+```
+
+## Roadmap
+Next version planned layouts and components:
+- `Contact us` layout
+- `Terms of Conditions` layout
+
 
 ## Feedback
 Please file Extrawest UI Kit specific issues, bugs, or feature requests in our [issue tracker](https://github.com/extrawest/extrawest_ui_kit_mobile/issues).
