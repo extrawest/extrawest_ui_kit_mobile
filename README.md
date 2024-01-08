@@ -26,7 +26,7 @@ Flutter package that provides Extrawest UI Kit based on Material 3 UI components
 
 ## DEMO
 
-https://github.com/extrawest/extrawest_ui_kit_mobile/assets/117409513/090547d4-f3eb-4802-87d0-da4da238e586
+![ui_kit_demo](https://github.com/extrawest/extrawest_ui_kit_mobile/assets/117409513/a9c288f8-bbd1-4ad1-92cc-10904178cce8?raw=true)
 
 
 ## Features
