@@ -1,7 +1,7 @@
 name: extrawest_ui_kit
-description: Extrawest UI kit
+description: Flutter package that provides Extrawest UI Kit based on Material 3 UI components
 version: 0.0.1
-homepage:
+homepage: https://github.com/extrawest/extrawest_ui_kit_mobile
 
 environment:
   sdk: '>=3.1.0-163.1.beta <4.0.0'
