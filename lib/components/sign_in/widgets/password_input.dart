@@ -11,9 +11,11 @@ class PasswordInput extends StatefulWidget {
   final bool isResetPasswordEnabled;
 
   final VoidCallback? onPasswordRecoveryTap;
+  final int errorMaxLines;
 
   const PasswordInput({
-    this.isResetPasswordEnabled = true,
+    this.isResetPasswordEnabled = false,
+    this.errorMaxLines = 2,
     this.controller,
     this.validator,
     this.onPasswordRecoveryTap,
@@ -31,6 +33,7 @@ class _PasswordInputState extends State<PasswordInput> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         EWTextField(
           controller: widget.controller,
@@ -38,6 +41,7 @@ class _PasswordInputState extends State<PasswordInput> {
           keyboardType: TextInputType.emailAddress,
           hintText: widget.hintText ?? 'Password',
           obscure: _isObscured,
+          errorMaxLines: widget.errorMaxLines,
           suffixIcon: Material(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(20.0),

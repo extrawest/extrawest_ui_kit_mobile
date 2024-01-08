@@ -3,16 +3,23 @@ import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
   final String? title;
+  final String? iconPath;
 
-  const Logo({this.title, Key? key}) : super(key: key);
+  const Logo({
+    this.iconPath,
+    this.title,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ColoredBox(color: theme.colorScheme.onSurfaceVariant),
+        if (iconPath != null) ...[
+          Image.asset(iconPath!),
+          const SizedBox(width: 4),
+        ],
         Text(
           title ?? '',
           style: context.textStyle(TextScale.headlineLarge),
