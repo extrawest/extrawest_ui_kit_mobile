@@ -20,7 +20,7 @@ and the Flutter guide for
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 ![GitHub release](https://img.shields.io/badge/release-v0.0.1-blue)
 ![Supported Platforms](https://img.shields.io/badge/Platform-Android%20|%20iOS%20|%20Web%20%20-blue.svg?logo=flutter)
-[![View DEMO](https://img.shields.io/badge/VIEW-DEMO-lightgreen.svg)](https://65815ecf1d85b80493439f81--capable-toffee-aa697f.netlify.app/)
+[![View DEMO](https://img.shields.io/badge/VIEW-DEMO-lightgreen.svg)](https://capable-toffee-aa697f.netlify.app/)
 
 Flutter package that provides Extrawest UI Kit based on Material 3 UI components
 
