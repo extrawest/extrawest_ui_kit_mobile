@@ -11,6 +11,8 @@ class OTPVerification extends StatelessWidget {
   final int codeLength;
   final VoidCallback? onResendPressed;
   final String phoneNumber;
+
+  /// Here you can use either the package's [Logo] component, either custom one
   final Widget? logo;
 
   const OTPVerification({

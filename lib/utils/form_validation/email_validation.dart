@@ -8,6 +8,7 @@ class EmailValidation extends FormzInput<String, EmailValidationError> with Form
 
   EmailValidation.dirty({this.emailRegExp, String? value}) : super.dirty(value = '');
 
+  /// A default email [RegExp] which will be used if custom is not provided.
   static final _defaultEmailRegExp = RegExp(
     r'^[a-zA-Z\d.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z\d-]+(?:\.[a-zA-Z\d-]+)*$',
   );
@@ -30,6 +31,7 @@ class EmailValidation extends FormzInput<String, EmailValidationError> with Form
 }
 
 extension EmailValidationExtension on EmailValidationError {
+  /// Method that returns an error text whenever email validator is requesting it.
   String text({String? invalidText}) {
     switch (this) {
       case EmailValidationError.invalid:

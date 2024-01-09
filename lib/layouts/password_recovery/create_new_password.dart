@@ -5,12 +5,17 @@ import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:password_strength/password_strength.dart';
 
+/// Layout for creating a new password
 class CreateNewPassword extends StatefulWidget {
   final VoidCallback? onSaveNewPasswordPressed;
   final TextEditingController passwordController;
+
+  /// Use this
   final String? Function(String?)? passwordValidator;
   final String? passwordRequirementsText;
   final bool isPasswordStrengthEnabled;
+
+  /// Here you can use either the package's [Logo] component, either custom one
   final Widget? logo;
 
   const CreateNewPassword({

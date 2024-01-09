@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 class TwoFactorAuth extends StatelessWidget {
   final VoidCallback onSendPressed;
   final TextEditingController controller;
+
+  /// Here you can use either the package's [Logo] component, either custom one
   final Widget? logo;
 
   const TwoFactorAuth({

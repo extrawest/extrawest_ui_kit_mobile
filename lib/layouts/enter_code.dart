@@ -7,10 +7,19 @@ import 'package:sms_autofill/sms_autofill.dart';
 
 class EnterCode extends StatelessWidget {
   final TextEditingController? controller;
+
+  /// Triggers once all code cells are filled
   final Function(String)? onCodeSubmitted;
+
+  /// Triggers whenever code input fields is changed
   final Function(String?)? onCodeChanged;
+
+  /// If you don't want to use auto submission logic when entering the whole code
+  /// use this one to add onPressed handler for Submit [EWBaseButton]
   final VoidCallback? onSubmit;
-  final Logo? logo;
+
+  /// Here you can use either the package's [Logo] component, either custom one
+  final Widget? logo;
   final int codeLength;
 
   const EnterCode({

@@ -4,9 +4,12 @@ import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dar
 import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:flutter/material.dart';
 
+/// Layout for entering email to get password recovery link
 class PasswordRecovery extends StatelessWidget {
   final VoidCallback onSendPressed;
   final TextEditingController emailController;
+
+  /// Here you can use either the package's [Logo] component, either custom one
   final Widget? logo;
 
   const PasswordRecovery({

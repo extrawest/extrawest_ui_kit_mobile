@@ -18,12 +18,18 @@ import 'package:formz/formz.dart';
 
 class CreateAccount extends StatefulWidget {
   final TextEditingController? emailController;
-  final TextEditingController? phoneNumberController;
   final TextEditingController? passwordController;
 
+  /// Pass this parameter, if you want to override default email validation RegExp
   final RegExp? emailRegExp;
+
+  /// Pass this parameter, if you want to override default email validation RegExp
   final RegExp? passwordRegExp;
+
+  /// If you override [emailRegExp] parameter, pass here error text for your custom RegExp rules
   final String? emailInvalidText;
+
+  /// If you override [passwordRegExp] parameter, pass here error text for your custom RegExp rules
   final String? passwordInvalidText;
 
   final void Function()? onCreateAccountTap;
@@ -32,7 +38,8 @@ class CreateAccount extends StatefulWidget {
   final void Function()? onPrivacyPolicyTap;
   final void Function()? onTermsAndConditionTap;
 
-  final String? title;
+  /// Here you can use either the package's [Logo] component, either custom one
+  final Widget? logo;
   final bool isSignInEnabled;
   final AutovalidateMode autoValidateMode;
 
@@ -40,6 +47,7 @@ class CreateAccount extends StatefulWidget {
   final bool isUsernameEnabled;
   final bool isPasswordEnabled;
 
+  /// Pass here the list of needed [SocialAuthProviderElement] objects.
   final List<SocialAuthProviderElement> socialAuthProviders;
 
   final EdgeInsets? contentPadding;
@@ -55,13 +63,12 @@ class CreateAccount extends StatefulWidget {
     this.autoValidateMode = AutovalidateMode.onUserInteraction,
     this.emailController,
     this.passwordController,
-    this.phoneNumberController,
     this.emailRegExp,
     this.passwordRegExp,
     this.emailInvalidText,
     this.passwordInvalidText,
     this.contentPadding,
-    this.title,
+    this.logo,
     this.onCreateAccountTap,
     this.onSignUpTap,
     this.onPasswordRecoveryTap,
@@ -127,7 +134,7 @@ class _CreateAccountState extends State<CreateAccount> {
     });
 
     try {
-      widget.onSignUpTap;
+      widget.onSignUpTap?.call();
       _formState = _formState.copyWith(status: FormzSubmissionStatus.success);
     } catch (_) {
       _formState = _formState.copyWith(status: FormzSubmissionStatus.failure);
@@ -151,7 +158,7 @@ class _CreateAccountState extends State<CreateAccount> {
         useSafeArea: widget.useSafeArea,
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: Logo(title: widget.title)),
+            SliverToBoxAdapter(child: widget.logo),
             SliverFillRemaining(
               hasScrollBody: false,
               child: Align(

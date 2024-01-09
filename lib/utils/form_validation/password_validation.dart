@@ -9,6 +9,7 @@ class PasswordValidation extends FormzInput<String, PasswordValidationError> {
 
   PasswordValidation.dirty({this.passwordRegExp, String? value}) : super.dirty(value = '');
 
+  /// A default email [RegExp] which will be used if custom is not provided.
   static final _defaultPasswordRegExp = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
 
   @override
@@ -29,6 +30,7 @@ class PasswordValidation extends FormzInput<String, PasswordValidationError> {
 }
 
 extension PasswordValidationErrorExtension on PasswordValidationError {
+  /// Method that returns an error text whenever email validator is requesting it.
   String text({String? invalidText}) {
     switch (this) {
       case PasswordValidationError.invalid:

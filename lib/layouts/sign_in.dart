@@ -15,19 +15,15 @@ import 'package:flutter/material.dart';
 class SignIn extends StatelessWidget {
   final AuthType authType;
   final TextEditingController? emailController;
-  final TextEditingController? phoneNumberController;
   final TextEditingController? passwordController;
-
-  final String? Function(String?)? passwordValidator;
-  final String? Function(String?)? emailValidator;
-  final String? Function(String?)? phoneNumberValidator;
 
   final void Function()? onCreateAccountTap;
   final void Function()? onSignInTap;
   final void Function()? onSignInAsGuestTap;
   final void Function()? onPasswordRecoveryTap;
 
-  final String? title;
+  /// Here you can use either the package's [Logo] component, either custom one
+  final Widget? logo;
   final bool isResetPasswordEnabled;
   final bool isSignUpEnabled;
   final bool isGuestEnabled;
@@ -46,12 +42,8 @@ class SignIn extends StatelessWidget {
     this.socialAuthProviders = const [],
     this.emailController,
     this.passwordController,
-    this.phoneNumberController,
-    this.emailValidator,
-    this.passwordValidator,
-    this.phoneNumberValidator,
     this.contentPadding,
-    this.title,
+    this.logo,
     this.onCreateAccountTap,
     this.onSignInTap,
     this.onSignInAsGuestTap,
@@ -66,7 +58,7 @@ class SignIn extends StatelessWidget {
       useSafeArea: useSafeArea,
       child: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: Logo(title: title)),
+          SliverToBoxAdapter(child: logo),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Align(
@@ -82,13 +74,11 @@ class SignIn extends StatelessWidget {
                   if (authType.isEmailPassword || authType.isEmailLink)
                     EmailInput(
                       controller: emailController,
-                      validator: emailValidator,
                     ),
                   const SizedBox(height: 16),
                   if (authType.isEmailPassword || authType.isPhoneNumber) ...[
                     PasswordInput(
                       controller: passwordController,
-                      validator: passwordValidator,
                       isResetPasswordEnabled: isResetPasswordEnabled,
                       onPasswordRecoveryTap: onPasswordRecoveryTap,
                     ),
