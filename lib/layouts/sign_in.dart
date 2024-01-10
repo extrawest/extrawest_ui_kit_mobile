@@ -89,10 +89,13 @@ class SignIn extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        EWBaseButton.filled(onPressed: onSignInTap, title: 'Sign In'),
+                        EWBaseButton.filled(
+                            onPressed: onSignInTap, title: 'Sign In'),
                         if (isGuestEnabled) ...[
                           const SizedBox(height: 16),
-                          EWBaseButton.outlined(onPressed: onSignInAsGuestTap, title: 'Sign In as Guest'),
+                          EWBaseButton.outlined(
+                              onPressed: onSignInAsGuestTap,
+                              title: 'Sign In as Guest'),
                         ],
                       ],
                     ),
