@@ -4,9 +4,12 @@ import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dar
 import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:flutter/material.dart';
 
+/// Layout for entering 2FA Auth code
 class TwoFactorAuth extends StatelessWidget {
   final VoidCallback onSendPressed;
   final TextEditingController controller;
+
+  /// Here you can use either the package's [Logo] component, either custom one
   final Widget? logo;
 
   const TwoFactorAuth({

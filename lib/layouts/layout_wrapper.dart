@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// This wrapper widget is universal and wrap its child with [Scaffold] and [Padding]
 class LayoutWrapper extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final Widget child;
@@ -21,7 +22,8 @@ class LayoutWrapper extends StatelessWidget {
         left: useSafeArea,
         right: useSafeArea,
         child: Padding(
-          padding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 16.0),
+          padding:
+              contentPadding ?? const EdgeInsets.symmetric(horizontal: 16.0),
           child: child,
         ),
       ),

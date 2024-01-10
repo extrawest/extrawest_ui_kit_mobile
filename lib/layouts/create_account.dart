@@ -9,21 +9,28 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/username_input.dart'
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/logo.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
-import 'package:extrawest_ui_kit/layouts/sign_in_layout.dart';
+import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:extrawest_ui_kit/utils/form_validation/create_account_form_state.dart';
 import 'package:extrawest_ui_kit/utils/form_validation/email_validation.dart';
 import 'package:extrawest_ui_kit/utils/form_validation/password_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 
+/// Layout for Sign Up
 class CreateAccount extends StatefulWidget {
   final TextEditingController? emailController;
-  final TextEditingController? phoneNumberController;
   final TextEditingController? passwordController;
 
+  /// Pass this parameter, if you want to override default email validation RegExp
   final RegExp? emailRegExp;
+
+  /// Pass this parameter, if you want to override default email validation RegExp
   final RegExp? passwordRegExp;
+
+  /// If you override [emailRegExp] parameter, pass here error text for your custom RegExp rules
   final String? emailInvalidText;
+
+  /// If you override [passwordRegExp] parameter, pass here error text for your custom RegExp rules
   final String? passwordInvalidText;
 
   final void Function()? onCreateAccountTap;
@@ -32,14 +39,21 @@ class CreateAccount extends StatefulWidget {
   final void Function()? onPrivacyPolicyTap;
   final void Function()? onTermsAndConditionTap;
 
-  final String? title;
+  /// Here you can use either the package's [Logo] component, either custom one
+  final Widget? logo;
   final bool isSignInEnabled;
   final AutovalidateMode autoValidateMode;
 
+  /// Enables [EmailInput]
   final bool isEmailEnabled;
+
+  /// Enables [UsernameInput]
   final bool isUsernameEnabled;
+
+  /// Enables [PasswordInput]
   final bool isPasswordEnabled;
 
+  /// Pass here the list of needed [SocialAuthProviderElement] objects.
   final List<SocialAuthProviderElement> socialAuthProviders;
 
   final EdgeInsets? contentPadding;
@@ -55,13 +69,12 @@ class CreateAccount extends StatefulWidget {
     this.autoValidateMode = AutovalidateMode.onUserInteraction,
     this.emailController,
     this.passwordController,
-    this.phoneNumberController,
     this.emailRegExp,
     this.passwordRegExp,
     this.emailInvalidText,
     this.passwordInvalidText,
     this.contentPadding,
-    this.title,
+    this.logo,
     this.onCreateAccountTap,
     this.onSignUpTap,
     this.onPasswordRecoveryTap,
@@ -123,11 +136,12 @@ class _CreateAccountState extends State<CreateAccount> {
     if (!_key.currentState!.validate()) return;
 
     setState(() {
-      _formState = _formState.copyWith(status: FormzSubmissionStatus.inProgress);
+      _formState =
+          _formState.copyWith(status: FormzSubmissionStatus.inProgress);
     });
 
     try {
-      widget.onSignUpTap;
+      widget.onSignUpTap?.call();
       _formState = _formState.copyWith(status: FormzSubmissionStatus.success);
     } catch (_) {
       _formState = _formState.copyWith(status: FormzSubmissionStatus.failure);
@@ -146,12 +160,12 @@ class _CreateAccountState extends State<CreateAccount> {
   Widget build(BuildContext context) {
     return Form(
       key: _key,
-      child: SignInLayout(
+      child: LayoutWrapper(
         contentPadding: widget.contentPadding,
         useSafeArea: widget.useSafeArea,
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: Logo(title: widget.title)),
+            SliverToBoxAdapter(child: widget.logo),
             SliverFillRemaining(
               hasScrollBody: false,
               child: Align(
@@ -167,8 +181,9 @@ class _CreateAccountState extends State<CreateAccount> {
                     if (widget.isEmailEnabled)
                       EmailInput(
                         controller: widget.emailController,
-                        validator: (value) =>
-                            _formState.email.validator(value ?? '')?.text(invalidText: widget.emailInvalidText),
+                        validator: (value) => _formState.email
+                            .validator(value ?? '')
+                            ?.text(invalidText: widget.emailInvalidText),
                       ),
                     const SizedBox(height: 16),
                     if (widget.isUsernameEnabled) ...[
@@ -178,8 +193,9 @@ class _CreateAccountState extends State<CreateAccount> {
                     if (widget.isPasswordEnabled) ...[
                       PasswordInput(
                         controller: widget.passwordController,
-                        validator: (value) =>
-                            _formState.password.validator(value ?? '')?.text(invalidText: widget.passwordInvalidText),
+                        validator: (value) => _formState.password
+                            .validator(value ?? '')
+                            ?.text(invalidText: widget.passwordInvalidText),
                         isResetPasswordEnabled: false,
                         onPasswordRecoveryTap: widget.onPasswordRecoveryTap,
                       ),
@@ -231,7 +247,8 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
   Widget _buildApproveSection() {
-    if (widget.onPrivacyPolicyTap == null && widget.onTermsAndConditionTap == null) {
+    if (widget.onPrivacyPolicyTap == null &&
+        widget.onTermsAndConditionTap == null) {
       return const SizedBox();
     }
     return Wrap(
@@ -248,7 +265,9 @@ class _CreateAccountState extends State<CreateAccount> {
             title: 'Privacy Policy',
             onPressed: widget.onPrivacyPolicyTap,
           ),
-        if (widget.onPrivacyPolicyTap != null && widget.onTermsAndConditionTap != null) const Text('and '),
+        if (widget.onPrivacyPolicyTap != null &&
+            widget.onTermsAndConditionTap != null)
+          const Text('and '),
         if (widget.onTermsAndConditionTap != null) ...[
           EWBaseButton.text(
             title: 'Terms and conditions',

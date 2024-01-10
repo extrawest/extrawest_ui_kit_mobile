@@ -1,4 +1,5 @@
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
+import 'package:extrawest_ui_kit/components/widgets/logo.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
 import 'package:extrawest_ui_kit/consts.dart';
 import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 class ErrorPage extends StatelessWidget {
   final String title;
   final String contentText;
+
+  /// Here you can use either the package's [Logo] component, either custom one
   final Widget? logo;
   final VoidCallback? onRetryPressed;
   final VoidCallback? onBackPressed;

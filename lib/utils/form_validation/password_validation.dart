@@ -5,11 +5,15 @@ enum PasswordValidationError { invalid, empty }
 class PasswordValidation extends FormzInput<String, PasswordValidationError> {
   final RegExp? passwordRegExp;
 
-  PasswordValidation.pure({this.passwordRegExp, String? value}) : super.pure(value = '');
+  PasswordValidation.pure({this.passwordRegExp, String? value})
+      : super.pure(value = '');
 
-  PasswordValidation.dirty({this.passwordRegExp, String? value}) : super.dirty(value = '');
+  PasswordValidation.dirty({this.passwordRegExp, String? value})
+      : super.dirty(value = '');
 
-  static final _defaultPasswordRegExp = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
+  /// A default email [RegExp] which will be used if custom is not provided.
+  static final _defaultPasswordRegExp =
+      RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
 
   @override
   PasswordValidationError? validator(String value) {
@@ -29,10 +33,12 @@ class PasswordValidation extends FormzInput<String, PasswordValidationError> {
 }
 
 extension PasswordValidationErrorExtension on PasswordValidationError {
+  /// Method that returns an error text whenever email validator is requesting it.
   String text({String? invalidText}) {
     switch (this) {
       case PasswordValidationError.invalid:
-        return invalidText ?? '''Password must be at least 8 characters and contain at least one letter and number''';
+        return invalidText ??
+            '''Password must be at least 8 characters and contain at least one letter and number''';
       case PasswordValidationError.empty:
         return 'Please enter a password';
     }

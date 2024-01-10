@@ -6,3 +6,9 @@
 ## 0.0.2
 
 * Update README demo
+
+
+## 1.0.0
+
+* Add documentation to package elements
+* Fix code formatting
