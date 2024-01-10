@@ -9,10 +9,11 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/x_button
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/logo.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
-import 'package:extrawest_ui_kit/layouts/sign_in_layout.dart';
+import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatelessWidget {
+  /// Choose here what auth type you would like to use for signing in
   final AuthType authType;
   final TextEditingController? emailController;
   final TextEditingController? passwordController;
@@ -53,7 +54,7 @@ class SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SignInLayout(
+    return LayoutWrapper(
       contentPadding: contentPadding,
       useSafeArea: useSafeArea,
       child: CustomScrollView(

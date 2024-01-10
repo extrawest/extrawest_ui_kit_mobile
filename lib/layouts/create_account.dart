@@ -16,6 +16,7 @@ import 'package:extrawest_ui_kit/utils/form_validation/password_validation.dart'
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 
+/// Layout for Sign Up
 class CreateAccount extends StatefulWidget {
   final TextEditingController? emailController;
   final TextEditingController? passwordController;
@@ -43,8 +44,13 @@ class CreateAccount extends StatefulWidget {
   final bool isSignInEnabled;
   final AutovalidateMode autoValidateMode;
 
+  /// Enables [EmailInput]
   final bool isEmailEnabled;
+
+  /// Enables [UsernameInput]
   final bool isUsernameEnabled;
+
+  /// Enables [PasswordInput]
   final bool isPasswordEnabled;
 
   /// Pass here the list of needed [SocialAuthProviderElement] objects.

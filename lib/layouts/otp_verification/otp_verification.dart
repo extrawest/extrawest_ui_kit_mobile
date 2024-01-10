@@ -4,6 +4,7 @@ import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
+/// Layout for entering OTP Code
 class OTPVerification extends StatelessWidget {
   final VoidCallback? onVerifyPressed;
   final Function(String)? onCodeSubmitted;

@@ -4,6 +4,7 @@ import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dar
 import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:flutter/material.dart';
 
+/// Layout for entering phone number to get OTP code
 class OTPEnterPhoneNumber extends StatelessWidget {
   final VoidCallback onSendPressed;
   final TextEditingController controller;

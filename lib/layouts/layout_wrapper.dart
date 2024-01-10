@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// These wrapper widget is universal and wrap its child with [Scaffold] and [Padding]
+/// This wrapper widget is universal and wrap its child with [Scaffold] and [Padding]
 class LayoutWrapper extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final Widget child;
