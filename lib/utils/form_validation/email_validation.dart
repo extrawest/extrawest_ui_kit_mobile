@@ -2,11 +2,14 @@ import 'package:formz/formz.dart';
 
 enum EmailValidationError { invalid, empty }
 
-class EmailValidation extends FormzInput<String, EmailValidationError> with FormzInputErrorCacheMixin {
+class EmailValidation extends FormzInput<String, EmailValidationError>
+    with FormzInputErrorCacheMixin {
   final RegExp? emailRegExp;
-  EmailValidation.pure({this.emailRegExp, String? value}) : super.pure(value = '');
+  EmailValidation.pure({this.emailRegExp, String? value})
+      : super.pure(value = '');
 
-  EmailValidation.dirty({this.emailRegExp, String? value}) : super.dirty(value = '');
+  EmailValidation.dirty({this.emailRegExp, String? value})
+      : super.dirty(value = '');
 
   /// A default email [RegExp] which will be used if custom is not provided.
   static final _defaultEmailRegExp = RegExp(

@@ -9,7 +9,7 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/username_input.dart'
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/logo.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
-import 'package:extrawest_ui_kit/layouts/sign_in_layout.dart';
+import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:extrawest_ui_kit/utils/form_validation/create_account_form_state.dart';
 import 'package:extrawest_ui_kit/utils/form_validation/email_validation.dart';
 import 'package:extrawest_ui_kit/utils/form_validation/password_validation.dart';
@@ -159,7 +159,7 @@ class _CreateAccountState extends State<CreateAccount> {
   Widget build(BuildContext context) {
     return Form(
       key: _key,
-      child: SignInLayout(
+      child: LayoutWrapper(
         contentPadding: widget.contentPadding,
         useSafeArea: widget.useSafeArea,
         child: CustomScrollView(

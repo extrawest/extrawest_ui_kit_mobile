@@ -149,7 +149,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         isSignInEnabled: true,
         isPasswordEnabled: true,
         onCreateAccountTap: () => Navigator.pop(context),
-        emailRegExp: RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"),
+        emailRegExp: RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"),
         passwordRegExp: RegExp(r'^.{6,}$'),
         passwordInvalidText: 'Password must contain at least 6 characters',
         onSignUpTap: () => ScaffoldMessenger.of(context).showSnackBar(

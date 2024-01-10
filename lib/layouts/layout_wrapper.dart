@@ -22,7 +22,8 @@ class LayoutWrapper extends StatelessWidget {
         left: useSafeArea,
         right: useSafeArea,
         child: Padding(
-          padding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 16.0),
+          padding:
+              contentPadding ?? const EdgeInsets.symmetric(horizontal: 16.0),
           child: child,
         ),
       ),

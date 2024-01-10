@@ -52,7 +52,8 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
           ),
           const SizedBox(height: 8),
           Text(
-            widget.passwordRequirementsText ?? 'Password must contain at least 7 letters and 1 number',
+            widget.passwordRequirementsText ??
+                'Password must contain at least 7 letters and 1 number',
             style: context.textStyle(TextScale.bodyMedium),
           ),
           const SizedBox(height: 40),
@@ -97,7 +98,8 @@ class _PasswordStrengthState extends State<PasswordStrength> {
   @override
   void initState() {
     widget.passwordController.addListener(() {
-      _passwordStrength = estimatePasswordStrength(widget.passwordController.text);
+      _passwordStrength =
+          estimatePasswordStrength(widget.passwordController.text);
       _calculateColor();
     });
     super.initState();

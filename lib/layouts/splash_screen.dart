@@ -23,10 +23,13 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        color: backgroundPath == null ? (backgroundColor ?? darkColorScheme.primary) : null,
+        color: backgroundPath == null
+            ? (backgroundColor ?? darkColorScheme.primary)
+            : null,
         decoration: backgroundPath != null
             ? BoxDecoration(
-                image: DecorationImage(image: AssetImage(backgroundPath!), fit: BoxFit.cover),
+                image: DecorationImage(
+                    image: AssetImage(backgroundPath!), fit: BoxFit.cover),
               )
             : null,
         child: Column(

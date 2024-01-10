@@ -132,6 +132,7 @@ class SignIn extends StatelessWidget {
     final showTitle = socialAuthProviders.length < 3;
     final List<Widget> socialButtons = [];
 
+    print('');
     socialAuthProviders.asMap().forEach((index, social) {
       socialButtons.add(buildSocialButton(social, showTitle));
       if (index < socialAuthProviders.length - 1) {
