@@ -52,7 +52,7 @@ class _HomeScreenState extends State<SignInScreen> {
       passwordController: _passwordController,
       useSafeArea: true,
       authType: AuthType.emailPassword,
-      title: 'Test',
+      logo: const Text('Login'),
       isSignUpEnabled: true,
       isResetPasswordEnabled: true,
       isGuestEnabled: true,
@@ -145,11 +145,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         emailController: _emailController,
         passwordController: _passwordController,
         useSafeArea: true,
-        title: 'Test',
+        logo: const Text('Sign Up'),
         isSignInEnabled: true,
         isPasswordEnabled: true,
         onCreateAccountTap: () => Navigator.pop(context),
-        emailRegExp: RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"),
+        emailRegExp: RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"),
         passwordRegExp: RegExp(r'^.{6,}$'),
         passwordInvalidText: 'Password must contain at least 6 characters',
         onSignUpTap: () => ScaffoldMessenger.of(context).showSnackBar(

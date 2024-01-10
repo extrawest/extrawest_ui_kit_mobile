@@ -3,10 +3,13 @@ import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dar
 import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:flutter/material.dart';
 
+/// This layout can be used to show that password recovery email is successfully sent
 class EmailSent extends StatelessWidget {
   final VoidCallback? onOpenEmailPressed;
   final VoidCallback? onTryAnotherEmailPressed;
   final String email;
+
+  /// Here you can use either the package's [Logo] component, either custom one
   final Widget? logo;
 
   const EmailSent({

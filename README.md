@@ -18,7 +18,7 @@ and the Flutter guide for
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg
 )](https://github.com/extrawest/extrawest_ui_kit_mobile/issues)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-![GitHub release](https://img.shields.io/badge/release-v0.0.1-blue)
+![GitHub release](https://img.shields.io/badge/release-v1.0.0-blue)
 ![Supported Platforms](https://img.shields.io/badge/Platform-Android%20|%20iOS%20|%20Web%20%20-blue.svg?logo=flutter)
 [![View DEMO](https://img.shields.io/badge/VIEW-DEMO-lightgreen.svg)](https://capable-toffee-aa697f.netlify.app/)
 

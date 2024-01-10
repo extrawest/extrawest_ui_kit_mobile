@@ -1,7 +1,10 @@
+import 'package:extrawest_ui_kit/layouts/create_account.dart';
 import 'package:extrawest_ui_kit/utils/form_validation/email_validation.dart';
 import 'package:extrawest_ui_kit/utils/form_validation/password_validation.dart';
 import 'package:formz/formz.dart';
 
+/// A part of a Form in [CreateAccount] layout, which keeps a state of
+/// TextFormFields which needs to be validated
 class CreateAccountFormState with FormzMixin {
   CreateAccountFormState({
     EmailValidation? emailValidation,

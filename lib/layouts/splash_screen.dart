@@ -1,8 +1,10 @@
+import 'package:extrawest_ui_kit/components/widgets/logo.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
 import 'package:extrawest_ui_kit/extrawest_ui_kit.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
+  /// Here you can use either the package's [Logo] component, either custom one
   final Widget? logo;
   final String? title;
   final String? backgroundPath;
@@ -21,10 +23,13 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        color: backgroundPath == null ? (backgroundColor ?? darkColorScheme.primary) : null,
+        color: backgroundPath == null
+            ? (backgroundColor ?? darkColorScheme.primary)
+            : null,
         decoration: backgroundPath != null
             ? BoxDecoration(
-                image: DecorationImage(image: AssetImage(backgroundPath!), fit: BoxFit.cover),
+                image: DecorationImage(
+                    image: AssetImage(backgroundPath!), fit: BoxFit.cover),
               )
             : null,
         child: Column(

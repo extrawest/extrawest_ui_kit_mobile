@@ -9,25 +9,22 @@ import 'package:extrawest_ui_kit/components/sign_in/widgets/social_auth/x_button
 import 'package:extrawest_ui_kit/components/widgets/ew_base_button.dart';
 import 'package:extrawest_ui_kit/components/widgets/logo.dart';
 import 'package:extrawest_ui_kit/components/widgets/text_widgets/text_scales.dart';
-import 'package:extrawest_ui_kit/layouts/sign_in_layout.dart';
+import 'package:extrawest_ui_kit/layouts/layout_wrapper.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatelessWidget {
+  /// Choose here what auth type you would like to use for signing in
   final AuthType authType;
   final TextEditingController? emailController;
-  final TextEditingController? phoneNumberController;
   final TextEditingController? passwordController;
-
-  final String? Function(String?)? passwordValidator;
-  final String? Function(String?)? emailValidator;
-  final String? Function(String?)? phoneNumberValidator;
 
   final void Function()? onCreateAccountTap;
   final void Function()? onSignInTap;
   final void Function()? onSignInAsGuestTap;
   final void Function()? onPasswordRecoveryTap;
 
-  final String? title;
+  /// Here you can use either the package's [Logo] component, either custom one
+  final Widget? logo;
   final bool isResetPasswordEnabled;
   final bool isSignUpEnabled;
   final bool isGuestEnabled;
@@ -46,12 +43,8 @@ class SignIn extends StatelessWidget {
     this.socialAuthProviders = const [],
     this.emailController,
     this.passwordController,
-    this.phoneNumberController,
-    this.emailValidator,
-    this.passwordValidator,
-    this.phoneNumberValidator,
     this.contentPadding,
-    this.title,
+    this.logo,
     this.onCreateAccountTap,
     this.onSignInTap,
     this.onSignInAsGuestTap,
@@ -61,12 +54,12 @@ class SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SignInLayout(
+    return LayoutWrapper(
       contentPadding: contentPadding,
       useSafeArea: useSafeArea,
       child: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: Logo(title: title)),
+          SliverToBoxAdapter(child: logo),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Align(
@@ -82,13 +75,11 @@ class SignIn extends StatelessWidget {
                   if (authType.isEmailPassword || authType.isEmailLink)
                     EmailInput(
                       controller: emailController,
-                      validator: emailValidator,
                     ),
                   const SizedBox(height: 16),
                   if (authType.isEmailPassword || authType.isPhoneNumber) ...[
                     PasswordInput(
                       controller: passwordController,
-                      validator: passwordValidator,
                       isResetPasswordEnabled: isResetPasswordEnabled,
                       onPasswordRecoveryTap: onPasswordRecoveryTap,
                     ),
