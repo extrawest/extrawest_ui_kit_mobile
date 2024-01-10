@@ -89,13 +89,10 @@ class SignIn extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        EWBaseButton.filled(
-                            onPressed: onSignInTap, title: 'Sign In'),
+                        EWBaseButton.filled(onPressed: onSignInTap, title: 'Sign In'),
                         if (isGuestEnabled) ...[
                           const SizedBox(height: 16),
-                          EWBaseButton.outlined(
-                              onPressed: onSignInAsGuestTap,
-                              title: 'Sign In as Guest'),
+                          EWBaseButton.outlined(onPressed: onSignInAsGuestTap, title: 'Sign In as Guest'),
                         ],
                       ],
                     ),
@@ -135,7 +132,6 @@ class SignIn extends StatelessWidget {
     final showTitle = socialAuthProviders.length < 3;
     final List<Widget> socialButtons = [];
 
-    print('');
     socialAuthProviders.asMap().forEach((index, social) {
       socialButtons.add(buildSocialButton(social, showTitle));
       if (index < socialAuthProviders.length - 1) {
