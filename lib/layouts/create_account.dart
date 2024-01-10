@@ -136,7 +136,8 @@ class _CreateAccountState extends State<CreateAccount> {
     if (!_key.currentState!.validate()) return;
 
     setState(() {
-      _formState = _formState.copyWith(status: FormzSubmissionStatus.inProgress);
+      _formState =
+          _formState.copyWith(status: FormzSubmissionStatus.inProgress);
     });
 
     try {
@@ -180,8 +181,9 @@ class _CreateAccountState extends State<CreateAccount> {
                     if (widget.isEmailEnabled)
                       EmailInput(
                         controller: widget.emailController,
-                        validator: (value) =>
-                            _formState.email.validator(value ?? '')?.text(invalidText: widget.emailInvalidText),
+                        validator: (value) => _formState.email
+                            .validator(value ?? '')
+                            ?.text(invalidText: widget.emailInvalidText),
                       ),
                     const SizedBox(height: 16),
                     if (widget.isUsernameEnabled) ...[
@@ -191,8 +193,9 @@ class _CreateAccountState extends State<CreateAccount> {
                     if (widget.isPasswordEnabled) ...[
                       PasswordInput(
                         controller: widget.passwordController,
-                        validator: (value) =>
-                            _formState.password.validator(value ?? '')?.text(invalidText: widget.passwordInvalidText),
+                        validator: (value) => _formState.password
+                            .validator(value ?? '')
+                            ?.text(invalidText: widget.passwordInvalidText),
                         isResetPasswordEnabled: false,
                         onPasswordRecoveryTap: widget.onPasswordRecoveryTap,
                       ),
@@ -244,7 +247,8 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
   Widget _buildApproveSection() {
-    if (widget.onPrivacyPolicyTap == null && widget.onTermsAndConditionTap == null) {
+    if (widget.onPrivacyPolicyTap == null &&
+        widget.onTermsAndConditionTap == null) {
       return const SizedBox();
     }
     return Wrap(
@@ -261,7 +265,9 @@ class _CreateAccountState extends State<CreateAccount> {
             title: 'Privacy Policy',
             onPressed: widget.onPrivacyPolicyTap,
           ),
-        if (widget.onPrivacyPolicyTap != null && widget.onTermsAndConditionTap != null) const Text('and '),
+        if (widget.onPrivacyPolicyTap != null &&
+            widget.onTermsAndConditionTap != null)
+          const Text('and '),
         if (widget.onTermsAndConditionTap != null) ...[
           EWBaseButton.text(
             title: 'Terms and conditions',
